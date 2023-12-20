@@ -1,0 +1,22 @@
+*
+!.gitignore
+!README.md
+
+# kitty
+!kitty/
+
+# zsh
+!zsh/
+
+# vim
+!vim/
+
+# nvim
+!nvim/init.lua
+!nvim/lua/
+
+# tmux
+!tmux/
+
+# joshuto
+!joshuto/
