@@ -1,4 +1,5 @@
 # Command alias
+alias c='clear'
 alias vim='nvim'
 alias py='python3'
 alias jst='joshuto'

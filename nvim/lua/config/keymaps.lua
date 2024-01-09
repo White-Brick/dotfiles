@@ -22,8 +22,8 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "ss", '"_dd')
 
 -- Better navigation
-keymap.set({ "n", "o" }, "H", "^")
-keymap.set({ "n", "o" }, "L", "$")
+keymap.set({ "n", "o", "v" }, "H", "^")
+keymap.set({ "n", "o", "v" }, "L", "$")
 
 keymap.set("n", "<Up>", "7gk", opts)
 keymap.set("n", "<Down>", "7gj", opts)
@@ -40,10 +40,10 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- keymap.set("n", "sv", ":svplit<Return>", opts)
 
 -- Move window
--- keymap.set("n", "sh", "<C-w>h")
--- keymap.set("n", "sk", "<C-w>k")
--- keymap.set("n", "sj", "<C-w>j")
--- keymap.set("n", "sl", "<C-w>l")
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sj", "<C-w>j")
+keymap.set("n", "sl", "<C-w>l")
 
 -- Fast saving
 keymap.set("n", ",w", ":w!<CR>", opts)

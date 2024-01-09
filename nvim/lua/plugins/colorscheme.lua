@@ -7,7 +7,7 @@ return {
     opts = function()
       return {
         transparent_mode = false,
-        contrast = "hard",
+        contrast = "",
       }
     end,
   },

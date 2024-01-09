@@ -3,10 +3,11 @@
 -- Add any additional options here
 
 -- Disable mouse
--- vim.opt.mouse = ""
+vim.opt.mouse = ""
 
 -- no number
 vim.opt.number = false
 
 vim.opt.backup = false
 vim.opt.wrap = false
+vim.opt.listchars = { tab = "→ ", trail = "·" }
