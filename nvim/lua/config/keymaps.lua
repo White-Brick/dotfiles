@@ -15,7 +15,7 @@ local opts = { noremap = true, silent = true }
 -- Terminal mode: When typing in a :terminal buffer.
 ----------------------------------------------------------------
 keymap.set({ "i", "v" }, "jk", "<Esc>", opts)
-keymap.set("n", ";;", ":", opts)
+-- keymap.set("n", ";;", ":", opts)
 
 -- Delete something without colbbering unnamed register
 keymap.set("n", "x", '"_x')

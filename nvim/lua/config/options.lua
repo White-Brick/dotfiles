@@ -6,7 +6,7 @@
 vim.opt.mouse = ""
 
 -- no number
-vim.opt.number = false
+-- vim.opt.number = false
 
 vim.opt.backup = false
 vim.opt.wrap = false
