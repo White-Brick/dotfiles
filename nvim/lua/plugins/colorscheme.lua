@@ -1,4 +1,14 @@
 return {
+  -- Disable tokyonight
+  {
+    enabled = false,
+    "tokyonight.nvim",
+  },
+  -- Disable cappuccin
+  {
+    enabled = false,
+    "catppuccin",
+  },
   -- Add gruvbox
   {
     "ellisonleao/gruvbox.nvim",
@@ -7,7 +17,7 @@ return {
     opts = function()
       return {
         transparent_mode = false,
-        contrast = "",
+        contrast = "soft",
       }
     end,
   },
