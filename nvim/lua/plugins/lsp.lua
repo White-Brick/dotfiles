@@ -6,6 +6,9 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "clangd",
         "clang-format",
+        "black",
+        "pyright",
+        -- "gopls",
       })
     end,
   },
@@ -57,6 +60,8 @@ return {
       -- ---@type lspconfig.options
       servers = {
         clangd = {},
+        pyright = {},
+        -- gopls = {},
       },
     },
   },

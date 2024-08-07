@@ -6,6 +6,7 @@ return {
         "c",
         "cpp",
         "cmake",
+        "lua",
       },
       highlight = { enable = true },
       indent = { enable = true },

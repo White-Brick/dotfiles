@@ -175,4 +175,12 @@ return {
       require("telescope").load_extension("file_browser")
     end,
   },
+  {
+    "conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        python = { "black" },
+      },
+    },
+  },
 }

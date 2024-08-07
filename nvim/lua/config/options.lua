@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- Disable mouse
-vim.opt.mouse = ""
+-- vim.opt.mouse = ""
 
 -- no number
 -- vim.opt.number = false

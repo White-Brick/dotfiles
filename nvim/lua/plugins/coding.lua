@@ -30,7 +30,7 @@ return {
         -- { name = 'snippy' }, -- For snippy users.
       }, {
         { name = "buffer" },
-        -- { name = "path" },
+        { name = "path" },
       })
 
       local has_words_before = function()
@@ -64,8 +64,8 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
       })
 
       cmp.setup.cmdline("/", {
