@@ -19,6 +19,7 @@ keymap.set({ "i", "v" }, "jk", "<Esc>", opts)
 
 -- Delete something without colbbering unnamed register
 keymap.set("n", "x", '"_x')
+keymap.set("n", "dd", '"_dd')
 keymap.set("n", "ss", '"_dd')
 
 -- Better navigation
@@ -32,8 +33,8 @@ keymap.set("n", "<Right>", "7l", opts)
 
 -- New tab
 -- keymap.set("n", "te", "tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+keymap.set("n", "<tab>", ":tabnext<CR>", opts)
+keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 
 -- Split window
 -- keymap.set("n", "ss", ":split<Return>", opts)
@@ -63,5 +64,5 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- code runner
--- keymap.set("n", "<Leader>o", ':! g++ -std=c++11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>')
--- keymap.set("n", "<Leader>r", ':! "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>')
+keymap.set("n", ",o", ":!g++ -std=c++2a % -o %:r<CR>", opts)
+keymap.set("n", ",r", ":!./%:r<CR>", opts)
