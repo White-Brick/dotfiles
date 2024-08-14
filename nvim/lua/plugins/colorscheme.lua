@@ -1,3 +1,11 @@
+local custom_gruvbox = require("lualine.themes.gruvbox_dark")
+-- Change the background of lualine_c section for normal mode
+-- custom_gruvbox.normal.a.bg = "#005f87"
+custom_gruvbox.insert.a.bg = "#F0E68C"
+-- custom_gruvbox.visual.a.bg = "#3CB371"
+custom_gruvbox.visual.a.bg = "#808000"
+custom_gruvbox.command.a.bg = "#6495ED"
+
 return {
   -- Disable tokyonight
   {
@@ -18,7 +26,7 @@ return {
       return {
         terminal_colors = true,
         transparent_mode = false,
-        contrast = "soft",
+        contrast = "",
         palette_overrides = {},
       }
     end,
@@ -29,6 +37,14 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "gruvbox",
+    },
+  },
+
+  -- Configure Lualine theme
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      theme = custom_gruvbox,
     },
   },
 }
