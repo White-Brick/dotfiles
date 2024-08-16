@@ -11,3 +11,5 @@
 vim.opt.backup = false
 vim.opt.wrap = false
 vim.opt.listchars = { tab = "→ ", trail = "·" }
+-- Disable log output
+vim.lsp.set_log_level("off")

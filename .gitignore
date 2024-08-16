@@ -1,7 +1,10 @@
+# Ignore all files
 *
+
 !.gitignore
 !README.md
 
+## Un-ignore the folders leading to config directory
 # kitty
 !kitty/
 
@@ -12,8 +15,12 @@
 !vim/
 
 # nvim
-!nvim/init.lua
+!nvim/
 !nvim/lua/
+!nvim/lua/config/
+!nvim/lua/plugins/
+!nvim/lua/config/*.lua
+!nvim/lua/plugins/*.lua
 
 # tmux
 !tmux/
