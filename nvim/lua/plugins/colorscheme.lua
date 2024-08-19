@@ -26,7 +26,7 @@ return {
       return {
         terminal_colors = true,
         transparent_mode = false,
-        contrast = "soft",
+        contrast = "",
         palette_overrides = {},
       }
     end,
@@ -43,6 +43,8 @@ return {
   -- Configure Lualine theme
   {
     "nvim-lualine/lualine.nvim",
+    lazy = true,
+    priority = 1000,
     opts = {
       theme = custom_gruvbox,
     },

@@ -31,10 +31,9 @@ return {
           },
           -- cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
           --
-          -- initialization_options = {
-          --   fallback_flags = { "-std=c++20" },
-          -- },
-          --
+          initialization_options = {
+            fallback_flags = { "-std=c++20" },
+          },
           -- keys = {
           --   { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
           -- },
