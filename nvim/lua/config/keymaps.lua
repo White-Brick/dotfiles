@@ -20,7 +20,7 @@ keymap.set({ "i", "v" }, "jk", "<Esc>", opts)
 -- Delete something without colbbering unnamed register
 keymap.set("n", "x", '"_x')
 keymap.set("n", "dd", '"_dd')
-keymap.set("n", "ss", '"_dd')
+-- keymap.set("n", "ss", '"_dd')
 
 -- Better navigation
 keymap.set({ "n", "o", "v" }, "H", "^")
@@ -37,7 +37,7 @@ keymap.set("n", "<tab>", ":tabnext<CR>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 
 -- Split window
--- keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 
 -- Move window
@@ -64,5 +64,5 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- code runner
-keymap.set("n", ",o", ":!g++ -std=c++2a % -o %:r<CR>", opts)
-keymap.set("n", ",r", ":!./%:r<CR>", opts)
+keymap.set("n", "<leader>o", ":!g++ -std=c++2a % -o %:r<CR>", opts)
+-- keymap.set("n", "<leader>r", ":!./%:r<CR>", opts)
