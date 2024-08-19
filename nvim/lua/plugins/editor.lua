@@ -1,13 +1,40 @@
 return {
   {
-    enabled = false,
+    -- enabled = false,
     "folke/flash.nvim",
+    -- @type Flash.Config
+    -- :help flash
     opts = {
+
       search = {
         forward = true,
         multi_window = false,
         wrap = false,
         incremental = true,
+      },
+
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+      keys = {
+        {
+          "s",
+          mode = { "n", "x", "o" },
+          function()
+            require("flash").jump()
+          end,
+          desc = "Flash",
+        },
+        {
+          "S",
+          mode = { "n", "x", "o" },
+          function()
+            require("flash").treesitter()
+          end,
+          desc = "Flash Treesitter",
+        },
       },
     },
   },
