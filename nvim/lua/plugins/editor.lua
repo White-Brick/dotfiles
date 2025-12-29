@@ -16,6 +16,7 @@ return {
       modes = {
         char = {
           enabled = false,
+          -- keys = { "f", "F" },
         },
       },
       keys = {

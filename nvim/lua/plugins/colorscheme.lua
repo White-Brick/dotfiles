@@ -1,11 +1,3 @@
-local custom_gruvbox = require("lualine.themes.gruvbox_dark")
--- Change the background of lualine_c section for normal mode
--- custom_gruvbox.normal.a.bg = "#005f87"
-custom_gruvbox.insert.a.bg = "#F0E68C"
--- custom_gruvbox.visual.a.bg = "#3CB371"
-custom_gruvbox.visual.a.bg = "#808000"
-custom_gruvbox.command.a.bg = "#6495ED"
-
 return {
   -- Disable tokyonight
   {
@@ -20,33 +12,34 @@ return {
   -- Add gruvbox
   {
     "ellisonleao/gruvbox.nvim",
-    lazy = true,
+    lazy = false,
     priority = 1000,
-    opts = function()
-      return {
-        terminal_colors = true,
-        transparent_mode = false,
-        contrast = "",
-        palette_overrides = {},
-      }
-    end,
-  },
-
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      terminal_colors = true,
+      transparent_mode = false,
+      contrast = "soft",
+      palette_overrides = {},
+      overrides = {},
     },
+    config = function()
+      vim.cmd.colorscheme("gruvbox")
+    end,
   },
 
   -- Configure Lualine theme
   {
     "nvim-lualine/lualine.nvim",
-    lazy = true,
-    priority = 1000,
+    -- lazy = true,
+    -- priority = 1000,
     opts = {
-      theme = custom_gruvbox,
+      -- theme = custom_gruvbox,
+      theme = (function()
+        local gruvbox_theme = require("lualine.themes.gruvbox_dark")
+        gruvbox_theme.insert.a.bg = "#F0E68C" -- "#005f87"
+        gruvbox_theme.visual.a.bg = "#808000" -- "#3CB371"
+        gruvbox_theme.command.a.bg = "#6495ED"
+        return gruvbox_theme
+      end)(),
     },
   },
 }

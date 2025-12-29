@@ -1,101 +1,66 @@
 return {
   {
-    -- enabled = false,
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
+    "crag666/code_runner.nvim",
+    keys = {
+      { "<leader>rr", "<cmd>w<CR><cmd>RunCode<CR>", desc = "[R]un Code" },
+      { "<leader>rf", "<cmd>w<CR><cmd>RunFile<CR>", desc = "[R]un [F]ile" },
+    },
+    -- config = true,
+    config = function()
+      local CXX_FLAGS = "-std=c++20 -Wall -Wextra"
+      local C_FLAGS = "-std=c17 -Wall -Wextra"
+      require("code_runner").setup({
+        filetype = {
+          cpp = string.format("clang++ %s $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt", CXX_FLAGS),
+          c = string.format("gcc %s $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt", C_FLAGS),
+          -- cpp = "clang++ -std=c++20 $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+          -- c = "gcc $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+        },
+      })
+      -- vim.keymap.set("n", "<leader>rr", ":RunCode<CR>", { noremap = true, silent = false })
+      -- vim.keymap.set("n", "<leader>rf", ":RunFile<CR>", { noremap = true, silent = false })
+
+      -- local wk = require("which-key")
+      -- wk.add({
+      --   { "<leader>r", group = "codeRunner" }, -- group
+      --   { "<leader>rr", "<cmd>RunCode<CR>", desc = "Run Code" },
+      --   { "<leader>rf", "<cmd>RunFile<CR>", desc = "Run File" },
+      -- })
     end,
   },
   {
-    "nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
+    "saghen/blink.cmp",
+    opts = {
+      keymap = {
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "cancel", "fallback" },
+        -- ["<C-e>"] = { "cancel" },
+        -- ["<Esc>"] = { "hide", "fallback" },
+        ["<Enter>"] = { "fallback" },
 
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      -- Make the completion window `bordered`
-      -- opts.window = {
-      --   completion = cmp.config.window.bordered(),
-      --   documentation = cmp.config.window.bordered(),
-      -- }
-
-      -- Specify cmp, the sources are ordered.
-      opts.sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        -- { name = "vsnip" }, -- For vsnip users.
-        { name = "luasnip" }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-      }, {
-        { name = "buffer" },
-        -- { name = "path" },
-      })
-
-      -- local has_words_before = function()
-      --   unpack = unpack or table.unpack
-      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      -- end
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          -- elseif has_words_before() then
-          --   cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        -- ["<Tab>"] = cmp.mapping(function(fallback)
-        --   -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-        --   if cmp.visible() then
-        --     local entry = cmp.get_selected_entry()
-        --     if not entry then
-        --       cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        --     end
-        --     cmp.confirm()
-        --   else
-        --     fallback()
-        --   end
-        -- end, {"i","s","c",}),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
-      })
-
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          "snippet_forward",
+          "fallback",
         },
-      })
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-      })
-    end,
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+        ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      },
+    },
   },
 }

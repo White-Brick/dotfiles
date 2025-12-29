@@ -18,13 +18,20 @@ keymap.set({ "i", "v" }, "jk", "<Esc>", opts)
 -- keymap.set("n", ";;", ":", opts)
 
 -- Delete something without colbbering unnamed register
-keymap.set("n", "x", '"_x')
+keymap.set("n", "xx", "dd")
 keymap.set("n", "dd", '"_dd')
--- keymap.set("n", "ss", '"_dd')
+keymap.set("n", "cc", '"_cc')
+
+keymap.set({ "n", "o" }, "d", '"_d')
+keymap.set({ "n", "o" }, "c", '"_c')
+keymap.set({ "n", "o" }, "x", '"_x')
+keymap.set({ "n", "o" }, "D", '"_D')
+keymap.set({ "n", "o" }, "C", '"_C')
+keymap.set({ "n", "o" }, "X", '"_X')
 
 -- Better navigation
-keymap.set({ "n", "o", "v" }, "H", "^")
-keymap.set({ "n", "o", "v" }, "L", "$")
+keymap.set({ "n", "o" }, "H", "^")
+keymap.set({ "n", "o" }, "L", "$")
 
 keymap.set("n", "<Up>", "7gk", opts)
 keymap.set("n", "<Down>", "7gj", opts)
@@ -33,12 +40,18 @@ keymap.set("n", "<Right>", "7l", opts)
 
 -- New tab
 -- keymap.set("n", "te", "tabedit")
-keymap.set("n", "<tab>", ":tabnext<CR>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
+-- keymap.set("n", "<tab>", ":tabnext<CR>", opts)
+-- keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+
+-- Resize window
+keymap.set("n", "<C-w><left>", "<C-w><")
+keymap.set("n", "<C-w><right>", "<C-w>>")
+keymap.set("n", "<C-w><up>", "<C-w>+")
+keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Move window
 keymap.set("n", "sh", "<C-w>h")
@@ -63,6 +76,6 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
--- code runner
-keymap.set("n", "<leader>o", ":!g++ -std=c++2a % -o %:r<CR>", opts)
--- keymap.set("n", "<leader>r", ":!./%:r<CR>", opts)
+-- move one line
+vim.keymap.set({ "n", "v" }, "<C-n>", "<Cmd>move .+1<CR>==", { desc = "Move Down" })
+vim.keymap.set({ "n", "v" }, "<C-p>", "<Cmd>execute 'move .-' .. (v:count1 + 1)<CR>==", { desc = "Move Up" })
