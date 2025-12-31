@@ -16,4 +16,3 @@ alias config='cd ~/.config'
 alias Linux='cd ~/Code/02_C++/Linux/'
 alias obsidian='cd /Users/geewinter/Library/Mobile\ Documents/iCloud~md~obsidian/Documents'
 alias iCloud='cd /Users/geewinter/Library/Mobile\ Documents/com~apple~CloudDocs'
-
