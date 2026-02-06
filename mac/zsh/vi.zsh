@@ -1,1 +1,0 @@
-#bindkey '\t' autosuggest-accept

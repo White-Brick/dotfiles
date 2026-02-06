@@ -1,9 +1,3 @@
-# Ignore everything in root
-/*
-
-# Except .gitignore
-!.gitignore
-
-# Track mac/ and linux/ directories only
-!/mac/
-!/linux/
+# Only track README.md
+*.md
+!README.md
