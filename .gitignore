@@ -7,11 +7,3 @@
 # Track mac/ and linux/ directories only
 !/mac/
 !/linux/
-
-# Specific ignores in tracked directories
-bili-summary
-bird
-clawhub
-procps
-systemd
-nvim/lazy-lock.json
