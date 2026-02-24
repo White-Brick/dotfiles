@@ -180,6 +180,21 @@ run = ['move-node-to-workspace Finder']
 [[on-window-detected]]
 if.app-id = 'com.eltima.cmd1.pro.mas'
 run = ['move-node-to-workspace Finder']
+
+# VSCode
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = ['move-node-to-workspace Code']
+
+# CLion
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.CLion'
+run = ['move-node-to-workspace Code']
+
+# Antigravity
+[[on-window-detected]]
+if.app-id = 'com.google.antigravity'
+run = ['move-node-to-workspace Code']
 ####################
 #floating layer applications
 ####################
