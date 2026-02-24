@@ -75,7 +75,3 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
-
--- move one line
-vim.keymap.set({ "n", "v" }, "<C-n>", "<Cmd>move .+1<CR>==", { desc = "Move Down" })
-vim.keymap.set({ "n", "v" }, "<C-p>", "<Cmd>execute 'move .-' .. (v:count1 + 1)<CR>==", { desc = "Move Up" })
