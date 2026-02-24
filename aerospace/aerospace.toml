@@ -1,0 +1,262 @@
+# Place a copy of this config to ~/.aerospace.toml
+# After that, you can edit ~/.aerospace.toml to your liking
+
+# It's not necessary to copy all keys to your config.
+# If the key is missing in your config, "default-config.toml" will serve as a fallback
+
+# You can use it to add commands that run after login to macOS user session.
+# 'start-at-login' needs to be 'true' for 'after-login-command' to work
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+
+# You can use it to add commands that run after AeroSpace startup.
+# 'after-startup-command' is run after 'after-login-command'
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = ['workspace Terminal']
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 30
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Possible values: (qwerty|dvorak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+key-mapping.preset = 'qwerty'
+
+# Mouse follows focus when focused monitor changes
+# Drop it from your config, if you don't like this behavior
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     5
+outer.top =        5
+outer.right =      5
+
+# 'main' binding mode — only entry key, all alt- keys released to terminal apps
+[mode.main.binding]
+ctrl-space = 'mode window'
+
+# 'window' binding mode — all window management operations
+# Enter via ctrl-space, exit via esc or auto-exit on workspace switch
+[mode.window.binding]
+esc = 'mode main'
+ctrl-space = 'mode main'
+
+# Focus (no auto-exit, allows consecutive operations)
+h = 'focus left --boundaries-action wrap-around-the-workspace'
+j = 'focus down --boundaries-action wrap-around-the-workspace'
+k = 'focus up --boundaries-action wrap-around-the-workspace'
+l = 'focus right --boundaries-action wrap-around-the-workspace'
+
+# Move window (no auto-exit)
+shift-h = 'move left'
+shift-j = 'move down'
+shift-k = 'move up'
+shift-l = 'move right'
+
+# Layout
+slash = 'layout tiles horizontal vertical'
+comma = 'layout accordion horizontal vertical'
+
+# Resize (no auto-exit)
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+
+# Workspace switch (auto-exit to main)
+1 = ['workspace 1', 'mode main']
+2 = ['workspace 2', 'mode main']
+3 = ['workspace 3', 'mode main']
+b = ['workspace Browser', 'mode main']
+c = ['workspace Code', 'mode main']
+f = ['workspace Finder', 'mode main']
+m = ['workspace Music', 'mode main']
+n = ['workspace Numbers', 'mode main']
+o = ['workspace Obsidian', 'mode main']
+t = ['workspace Terminal', 'mode main']
+
+# Move node to workspace and follow (auto-exit to main)
+shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
+shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
+shift-3 = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
+shift-b = ['move-node-to-workspace Browser', 'workspace Browser', 'mode main']
+shift-c = ['move-node-to-workspace Code', 'workspace Code', 'mode main']
+shift-f = ['move-node-to-workspace Finder', 'workspace Finder', 'mode main']
+shift-m = ['move-node-to-workspace Music', 'workspace Music', 'mode main']
+shift-n = ['move-node-to-workspace Numbers', 'workspace Numbers', 'mode main']
+shift-o = ['move-node-to-workspace Obsidian', 'workspace Obsidian', 'mode main']
+shift-t = ['move-node-to-workspace Terminal', 'workspace Terminal', 'mode main']
+
+# Workspace back-and-forth / move to monitor
+tab = ['workspace-back-and-forth', 'mode main']
+shift-tab = ['move-workspace-to-monitor --wrap-around next', 'mode main']
+
+# Enter service mode
+semicolon = 'mode service'
+
+# 'service' binding mode
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+shift-h = ['join-with left', 'mode main']
+shift-j = ['join-with down', 'mode main']
+shift-k = ['join-with up', 'mode main']
+shift-l = ['join-with right', 'mode main']
+
+
+####################
+#workspace applications
+###################
+# Safari
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = ['move-node-to-workspace Browser']
+
+# Kitty
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = ['move-node-to-workspace Terminal']
+
+# Obsidian
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['move-node-to-workspace Obsidian']
+
+# Music
+[[on-window-detected]]
+if.app-id = 'com.netease.163music'
+run = ['move-node-to-workspace Music']
+
+# Numbers
+[[on-window-detected]]
+if.app-id = 'com.apple.iWork.Numbers'
+run = ['move-node-to-workspace Numbers']
+
+# # Calendar
+# [[on-window-detected]]
+# if.app-id = 'com.apple.iCal'
+# run = ['move-node-to-workspace Calendar']
+#
+# # Reminders
+# [[on-window-detected]]
+# if.app-id = 'com.apple.reminders'
+# run = ['move-node-to-workspace Calendar']
+
+# Finder
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+check-further-callbacks = true
+run = ['move-node-to-workspace Finder']
+
+# Commander One PRO
+[[on-window-detected]]
+if.app-id = 'com.eltima.cmd1.pro.mas'
+run = ['move-node-to-workspace Finder']
+####################
+#floating layer applications
+####################
+# Genshin Impact
+[[on-window-detected]]
+if.app-id = 'com.miHoYo.Yuanshen'
+run = ['layout floating', 'move-node-to-workspace Game' ]
+
+# Telegram
+[[on-window-detected]]
+if.app-id = 'org.telegram.desktop'
+run = ['layout floating']
+
+# Calibre
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.calibre'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.calibre-ebook.ebook-edit'
+run = ['layout floating']
+
+# WeChat
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+run = ['layout floating']
+
+# Karabiner-Elements
+[[on-window-detected]]
+if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
+run = ['layout floating']
+
+# CleanMyMac
+[[on-window-detected]]
+if.app-id = 'com.macpaw.CleanMyMac4'
+# if.app-id = 'com.macpaw.zh.CleanMyMac4'
+run = ['layout floating']
+
+# iPhone Mirroring
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenContinuity'
+run = ['layout floating']
+
+# Quark
+[[on-window-detected]]
+if.app-id = 'com.alibaba.quark.clouddrive'
+run = ['layout floating']
+
+# TickTick
+[[on-window-detected]]
+if.app-id = 'com.TickTick.task.mac'
+run = ['layout floating']
+
+# Anki
+[[on-window-detected]]
+if.app-id = 'net.ankiweb.launcher'
+run = ['layout floating']
+
+####################
+#system floating applications
+####################
+# System Settings
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = ['layout floating']
+
+# System Profiler
+[[on-window-detected]]
+if.app-id = 'com.apple.SystemProfiler'
+run = ['layout floating']
+
+# Activity Monitor
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = ['layout floating']
+
+# App Store
+[[on-window-detected]]
+if.app-id = 'com.apple.AppStore'
+run = ['layout floating']

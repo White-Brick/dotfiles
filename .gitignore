@@ -5,6 +5,10 @@
 !README.md
 
 # Un-ignore the folders leading to config directory
+# Aerospace
+!aerospace/
+!aerospace/aerospace.toml
+
 # Kitty
 !kitty/
 
