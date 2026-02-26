@@ -1,0 +1,20 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {},
+  "provider": {
+    "zhipuai-coding-plan": {
+      "options": {
+        "apiKey": "20a2323cb4ec46c7afb45362357ae56c.LwLffJOQoGUvQcg3"
+      }
+    },
+    "claude-yunyi": {
+      "npm": "@ai-sdk/anthropic",
+      "options": {
+        "baseURL": "https://yunyi.rdzhvip.com/claude/v1",
+        "apiKey": "1SKRW173-Q6Q3-NKJ1-2YA1-4M0DZAR40E30"
+      }
+    }
+  },
+  "model": "zhipuai-coding-plan/glm-4.7",
+  "small_model": "zhipuai-coding-plan/glm-4.7"
+}
