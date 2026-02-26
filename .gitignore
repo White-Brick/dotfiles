@@ -14,3 +14,5 @@ nvim/lazy-lock.json
 *~
 qmd
 tmux/plugins/
+htop
+zhihu-kb
