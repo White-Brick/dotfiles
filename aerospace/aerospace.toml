@@ -253,6 +253,11 @@ run = ['layout floating']
 if.app-id = 'net.ankiweb.launcher'
 run = ['layout floating']
 
+# Deskflow
+[[on-window-detected]]
+if.app-id = 'org.deskflow.deskflow'
+run = ['layout floating']
+
 ####################
 #system floating applications
 ####################
