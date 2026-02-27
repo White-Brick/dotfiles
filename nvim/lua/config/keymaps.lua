@@ -40,8 +40,6 @@ keymap.set("n", "<Right>", "7l", opts)
 
 -- New tab
 keymap.set("n", "te", "tabedit")
-keymap.set("n", "<tab>", ":tabnext<CR>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 
 -- Split window
 -- keymap.set("n", "ss", ":split<Return>", opts)
@@ -73,5 +71,3 @@ keymap.set("n", "-", "<C-x>")
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- Jumplist
-keymap.set("n", "<C-m>", "<C-i>", opts)
