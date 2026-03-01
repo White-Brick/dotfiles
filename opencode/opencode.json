@@ -1,17 +1,45 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {},
+  "enabled_providers": ["zhipuai-coding-plan", "code5.3"],
   "provider": {
     "zhipuai-coding-plan": {
       "options": {
         "apiKey": "20a2323cb4ec46c7afb45362357ae56c.LwLffJOQoGUvQcg3"
       }
     },
-    "claude-yunyi": {
-      "npm": "@ai-sdk/anthropic",
+    "code5.3": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Code5.3",
       "options": {
-        "baseURL": "https://yunyi.rdzhvip.com/claude/v1",
+        "baseURL": "https://yunyi.rdzhvip.com/codex",
         "apiKey": "1SKRW173-Q6Q3-NKJ1-2YA1-4M0DZAR40E30"
+      },
+      "models": {
+        "gpt-5.3-codex": {
+          "name": "GPT-5.3 Codex"
+        },
+        "gpt-5.2": {
+          "name": "GPT-5.2"
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT-5.2 Codex"
+        },
+        "gpt-5.1-codex-max": {
+          "name": "GPT-5.1 Codex Max"
+        },
+        "gpt-5.1-codex": {
+          "name": "GPT-5.1 Codex"
+        },
+        "gpt-5.1-codex-mini": {
+          "name": "GPT-5.1 Codex Mini"
+        },
+        "gpt-5.1": {
+          "name": "GPT-5.1"
+        },
+        "gpt-5-codex": {
+          "name": "GPT-5 Codex"
+        }
       }
     }
   },
