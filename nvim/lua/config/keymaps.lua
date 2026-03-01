@@ -57,6 +57,12 @@ keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
+-- Window navigation with Option key (Meta)
+keymap.set({ "n", "t" }, "<M-h>", "<C-\\><C-n><C-w>h", opts)
+keymap.set({ "n", "t" }, "<M-j>", "<C-\\><C-n><C-w>j", opts)
+keymap.set({ "n", "t" }, "<M-k>", "<C-\\><C-n><C-w>k", opts)
+keymap.set({ "n", "t" }, "<M-l>", "<C-\\><C-n><C-w>l", opts)
+
 -- Fast saving
 keymap.set("n", ",w", ":w!<CR>", opts)
 keymap.set("n", ",q", ":q<CR>", opts)
