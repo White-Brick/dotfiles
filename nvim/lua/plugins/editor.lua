@@ -4,6 +4,13 @@ return {
 		"folke/flash.nvim",
 		-- @type Flash.Config
 		-- :help flash
+		opts = {
+			modes = {
+				char = {
+					enabled = false, -- 禁用 flash 对 f, t, ;, , 的增强
+				},
+			},
+		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
