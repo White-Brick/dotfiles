@@ -13,6 +13,40 @@
         "baseURL": "https://yunyi.rdzhvip.com/claude/v1",
         "apiKey": "1SKRW173-Q6Q3-NKJ1-2YA1-4M0DZAR40E30"
       }
+    },
+    "code5.3": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Code5.3",
+      "options": {
+        "baseURL": "https://yunyi.rdzhvip.com/codex",
+        "apiKey": "1SKRW173-Q6Q3-NKJ1-2YA1-4M0DZAR40E30"
+      },
+      "models": {
+        "gpt-5.3-codex": {
+          "name": "GPT-5.3 Codex"
+        },
+        "gpt-5.2": {
+          "name": "GPT-5.2"
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT-5.2 Codex"
+        },
+        "gpt-5.1-codex-max": {
+          "name": "GPT-5.1 Codex Max"
+        },
+        "gpt-5.1-codex": {
+          "name": "GPT-5.1 Codex"
+        },
+        "gpt-5.1-codex-mini": {
+          "name": "GPT-5.1 Codex Mini"
+        },
+        "gpt-5.1": {
+          "name": "GPT-5.1"
+        },
+        "gpt-5-codex": {
+          "name": "GPT-5 Codex"
+        }
+      }
     }
   },
   "model": "zhipuai-coding-plan/glm-4.7",
