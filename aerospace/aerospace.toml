@@ -222,6 +222,11 @@ run = ['layout floating']
 if.app-id = 'com.tencent.xinWeChat'
 run = ['layout floating']
 
+# Feishu / Lark
+[[on-window-detected]]
+if.app-id = 'com.electron.lark'
+run = ['layout floating']
+
 # Karabiner-Elements
 [[on-window-detected]]
 if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
