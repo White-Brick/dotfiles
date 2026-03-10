@@ -32,6 +32,7 @@
 # OpenCode
 !opencode/
 !opencode/AGENTS.md
+opencode/opencode.json
 
 # Zim
 !zim/
