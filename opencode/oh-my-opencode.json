@@ -1,5 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "claude_code": {
+    "agents": false,
+    "commands": false,
+    "hooks": false,
+    "mcp": false,
+    "plugins": false,
+    "skills": false
+  },
   "agents": {
     "sisyphus": {
       "model": "claude-code/claude-opus-4-6",
@@ -14,10 +22,10 @@
       "variant": "xhigh"
     },
     "librarian": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
+      "model": "claude-code/claude-sonnet-4-6"
     },
     "explore": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
+      "model": "claude-code/claude-sonnet-4-6"
     },
     "multimodal-looker": {
       "model": "codex/gpt-5.4",
@@ -39,13 +47,12 @@
       "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "sisyphus-junior": {
-      "model": "claude-code/claude-sonnet-4-6"
+      "model": "codex/gpt-5.4"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "kimi-for-coding/kimi-k2.5",
-      "variant": "high"
+      "model": "codex/gpt-5.4"
     },
     "ultrabrain": {
       "model": "codex/gpt-5.4",
@@ -56,21 +63,21 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "kimi-for-coding/kimi-k2.5",
-      "variant": "high"
+      "model": "claude-code/claude-opus-4-6",
+      "variant": "max"
     },
     "quick": {
-      "model": "codex/gpt-5.4-mini"
+      "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "unspecified-low": {
-      "model": "claude-code/claude-sonnet-4-6"
+      "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "unspecified-high": {
       "model": "claude-code/claude-opus-4-6",
       "variant": "max"
     },
     "writing": {
-      "model": "google/gemini-3-flash-preview"
+      "model": "zhipuai-coding-plan/glm-5-turbo"
     }
   }
 }
