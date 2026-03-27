@@ -22,10 +22,10 @@
       "variant": "xhigh"
     },
     "librarian": {
-      "model": "claude-code/claude-sonnet-4-6"
+      "model": "kimi-for-coding/kimi-k2.5"
     },
     "explore": {
-      "model": "claude-code/claude-sonnet-4-6"
+      "model": "kimi-for-coding/kimi-k2.5"
     },
     "multimodal-looker": {
       "model": "codex/gpt-5.4",
@@ -52,14 +52,14 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "codex/gpt-5.4"
+      "model": "kimi-for-coding/kimi-k2.5"
     },
     "ultrabrain": {
       "model": "codex/gpt-5.4",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "codex/gpt-5.3-codex",
+      "model": "codex/gpt-5.4",
       "variant": "medium"
     },
     "artistry": {
