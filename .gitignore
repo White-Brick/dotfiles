@@ -43,17 +43,3 @@ opencode/opencode.json
 !zim/
 !zim/zimrc
 
-# 非仓库管理的配置目录
-borders/
-cagent/
-htop/
-karabiner/
-raycast/
-.claude/
-
-# 依赖和缓存
-node_modules/
-bun.lock
-
-# opencode 运行时数据
-opencode/sessions/
