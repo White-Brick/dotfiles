@@ -11,7 +11,7 @@ if [ -z "$TPGID" ] || [ "$TPGID" = "$PID" ] || [ "$TPGID" = "-1" ]; then
     CMD=$(ps -p "$PID" -o command= 2>/dev/null)
 else
     # 取前台进程组中 PID 最小的进程（主进程）
-    CMD=$(ps -g "$TPGID" -o pid=,command= 2>/dev/null | sort -n | head -1 | sed 's/^[0-9]* *//')
+    CMD=$(ps -g "$TPGID" -o pid=,command= 2>/dev/null | sort -n | head -1 | sed 's/^[[:space:]]*[0-9]*[[:space:]]*//')
     [ -z "$CMD" ] && CMD=$(ps -p "$PID" -o command= 2>/dev/null)
 fi
 
