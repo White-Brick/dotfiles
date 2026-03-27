@@ -60,7 +60,7 @@
     },
     "deep": {
       "model": "codex/gpt-5.4",
-      "variant": "medium"
+      "variant": "xhigh"
     },
     "artistry": {
       "model": "claude-code/claude-opus-4-6",
