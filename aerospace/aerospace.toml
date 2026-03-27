@@ -52,73 +52,66 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
-outer.left =       5
-outer.bottom =     5
-outer.top =        5
-outer.right =      5
+inner.horizontal = 3
+inner.vertical =   3
+outer.left =       3
+outer.bottom =     3
+outer.top =        3
+outer.right =      3
 
-# 'main' binding mode — only entry key, all alt- keys released to terminal apps
+# 'main' binding mode — use default opt (alt) style shortcuts
 [mode.main.binding]
-ctrl-space = 'mode window'
 
-# 'window' binding mode — all window management operations
-# Enter via ctrl-space, exit via esc or auto-exit on workspace switch
-[mode.window.binding]
-esc = 'mode main'
-ctrl-space = 'mode main'
+# Focus
+alt-h = 'focus left --boundaries-action wrap-around-the-workspace'
+alt-j = 'focus down --boundaries-action wrap-around-the-workspace'
+alt-k = 'focus up --boundaries-action wrap-around-the-workspace'
+alt-l = 'focus right --boundaries-action wrap-around-the-workspace'
 
-# Focus (no auto-exit, allows consecutive operations)
-h = 'focus left --boundaries-action wrap-around-the-workspace'
-j = 'focus down --boundaries-action wrap-around-the-workspace'
-k = 'focus up --boundaries-action wrap-around-the-workspace'
-l = 'focus right --boundaries-action wrap-around-the-workspace'
-
-# Move window (no auto-exit)
-shift-h = 'move left'
-shift-j = 'move down'
-shift-k = 'move up'
-shift-l = 'move right'
+# Move window
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
 # Layout
-slash = 'layout tiles horizontal vertical'
-comma = 'layout accordion horizontal vertical'
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
 
-# Resize (no auto-exit)
-minus = 'resize smart -50'
-equal = 'resize smart +50'
+# Resize
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
 
-# Workspace switch (auto-exit to main)
-1 = ['workspace 1', 'mode main']
-2 = ['workspace 2', 'mode main']
-3 = ['workspace 3', 'mode main']
-b = ['workspace Browser', 'mode main']
-c = ['workspace Code', 'mode main']
-f = ['workspace Finder', 'mode main']
-m = ['workspace Music', 'mode main']
-n = ['workspace Numbers', 'mode main']
-o = ['workspace Obsidian', 'mode main']
-t = ['workspace Terminal', 'mode main']
+# Workspace switch
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-b = 'workspace Browser'
+alt-c = 'workspace Code'
+alt-f = 'workspace Finder'
+alt-m = 'workspace Music'
+alt-n = 'workspace Numbers'
+alt-o = 'workspace Obsidian'
+alt-t = 'workspace Terminal'
 
-# Move node to workspace and follow (auto-exit to main)
-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
-shift-3 = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
-shift-b = ['move-node-to-workspace Browser', 'workspace Browser', 'mode main']
-shift-c = ['move-node-to-workspace Code', 'workspace Code', 'mode main']
-shift-f = ['move-node-to-workspace Finder', 'workspace Finder', 'mode main']
-shift-m = ['move-node-to-workspace Music', 'workspace Music', 'mode main']
-shift-n = ['move-node-to-workspace Numbers', 'workspace Numbers', 'mode main']
-shift-o = ['move-node-to-workspace Obsidian', 'workspace Obsidian', 'mode main']
-shift-t = ['move-node-to-workspace Terminal', 'workspace Terminal', 'mode main']
+# Move node to workspace and follow
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-b = ['move-node-to-workspace Browser', 'workspace Browser']
+alt-shift-c = ['move-node-to-workspace Code', 'workspace Code']
+alt-shift-f = ['move-node-to-workspace Finder', 'workspace Finder']
+alt-shift-m = ['move-node-to-workspace Music', 'workspace Music']
+alt-shift-n = ['move-node-to-workspace Numbers', 'workspace Numbers']
+alt-shift-o = ['move-node-to-workspace Obsidian', 'workspace Obsidian']
+alt-shift-t = ['move-node-to-workspace Terminal', 'workspace Terminal']
 
 # Workspace back-and-forth / move to monitor
-tab = ['workspace-back-and-forth', 'mode main']
-shift-tab = ['move-workspace-to-monitor --wrap-around next', 'mode main']
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # Enter service mode
-semicolon = 'mode service'
+alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode
 [mode.service.binding]
@@ -126,10 +119,10 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main']
 f = ['layout floating tiling', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
-shift-h = ['join-with left', 'mode main']
-shift-j = ['join-with down', 'mode main']
-shift-k = ['join-with up', 'mode main']
-shift-l = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
 
 
 ####################
@@ -157,7 +150,7 @@ run = ['move-node-to-workspace Music']
 
 # Numbers
 [[on-window-detected]]
-if.app-id = 'com.apple.iWork.Numbers'
+if.app-id = 'com.apple.Numbers'
 run = ['move-node-to-workspace Numbers']
 
 # # Calendar
@@ -195,6 +188,11 @@ run = ['move-node-to-workspace Code']
 [[on-window-detected]]
 if.app-id = 'com.google.antigravity'
 run = ['move-node-to-workspace Code']
+
+# Codex
+[[on-window-detected]]
+if.app-id = 'com.openai.codex'
+run = ['move-node-to-workspace Code']
 ####################
 #floating layer applications
 ####################
@@ -206,6 +204,10 @@ run = ['layout floating', 'move-node-to-workspace Game' ]
 # Telegram
 [[on-window-detected]]
 if.app-id = 'org.telegram.desktop'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.tdesktop.Telegram'
 run = ['layout floating']
 
 # Calibre

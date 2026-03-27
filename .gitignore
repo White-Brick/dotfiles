@@ -11,9 +11,10 @@
 
 # Kitty
 !kitty/
+!kitty/current-theme.conf
 
-# Zsh
-!zsh/
+# Zsh（不纳入版本管理）
+zsh/
 
 # Vim
 !vim/
@@ -28,10 +29,14 @@
 
 # tmux
 !tmux/
+!tmux/pane_label.sh
 
 # OpenCode
 !opencode/
 !opencode/AGENTS.md
+!opencode/.gitignore
+!opencode/package.json
+!opencode/oh-my-opencode.json
 opencode/opencode.json
 
 # Zim
