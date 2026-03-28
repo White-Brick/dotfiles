@@ -10,22 +10,22 @@
   },
   "agents": {
     "sisyphus": {
-      "model": "claude-code/claude-opus-4-6",
-      "variant": "max"
+      "model": "codex/gpt-5.4",
+      "variant": "xhigh"
     },
     "hephaestus": {
       "model": "codex/gpt-5.4",
       "variant": "xhigh"
     },
     "oracle": {
-      "model": "codex/gpt-5.4",
-      "variant": "xhigh"
+      "model": "claude-code/claude-opus-4-6",
+      "variant": "max"
     },
     "librarian": {
-      "model": "kimi-for-coding/kimi-k2.5"
+      "model": "kimi-for-coding/k2p5"
     },
     "explore": {
-      "model": "kimi-for-coding/kimi-k2.5"
+      "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "multimodal-looker": {
       "model": "codex/gpt-5.4",
@@ -47,12 +47,13 @@
       "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "sisyphus-junior": {
-      "model": "codex/gpt-5.4"
+      "model": "codex/gpt-5.4",
+      "variant": "xhigh"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "kimi-for-coding/kimi-k2.5"
+      "model": "kimi-for-coding/k2p5"
     },
     "ultrabrain": {
       "model": "codex/gpt-5.4",
