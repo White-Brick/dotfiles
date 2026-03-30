@@ -23,5 +23,10 @@ case "$CMD" in
   *vim*)     echo "vim"     ;;
   *python*)  echo "python"  ;;
   *node*)    echo "node"    ;;
-  *)         echo "$(basename "${CMD%% *}")" ;;
+  *)
+    commandName=${CMD%% *}
+    commandName=${commandName##*/}
+    commandName=${commandName#-}
+    echo "$commandName"
+    ;;
 esac
