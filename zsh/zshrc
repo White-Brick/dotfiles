@@ -136,6 +136,7 @@ fi
 
 # Source custom configurations
 [[ -r ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
+[[ -r ~/.config/zsh/aliases.local.zsh ]] && source ~/.config/zsh/aliases.local.zsh
 [[ -r ~/.config/zsh/vi.zsh ]] && source ~/.config/zsh/vi.zsh
 
 # Environment
