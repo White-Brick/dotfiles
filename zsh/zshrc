@@ -106,8 +106,15 @@ function yz() {
 # Initialize modules
 # ------------------
 
-ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+ZIM_HOME=${ZIM_HOME:-${ZDOTDIR:-${HOME}}/.zim}
+if [[ ! -d ${ZIM_HOME} ]]; then
+  ZIM_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}/zim
+fi
+
 ZIM_CONFIG_FILE=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc}
+if [[ ! -r ${ZIM_CONFIG_FILE} ]]; then
+  ZIM_CONFIG_FILE=${XDG_CONFIG_HOME:-${HOME}/.config}/zim/zimrc
+fi
 
 if (( ! __BIC_ZSH_FIRST_LOAD )); then
   # Keep init.zsh in sync locally. Initial install/bootstrap stays manual.
