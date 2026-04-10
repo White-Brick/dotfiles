@@ -7,12 +7,16 @@ alias delELF='find . -maxdepth 1 -type f -perm +111 -exec file {} \; | grep "exe
 #alias gac="git add . && git commit -a -m "
 
 # File path alias
-alias Tcp='cd /Users/geewinter/Code/02_c++/basic/tcp'
 alias Code='cd ~/Code'
-alias Primer='cd /Users/geewinter/Code/02_C++/study/C++Primer-demo'
-alias Notes='cd /Users/geewinter/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian\ Vault/Notes'
-alias algorithm='cd /Users/geewinter/Code/02_c++/study/algorithm'
 alias config='cd ~/.config'
+
+# Cloud storage paths
+alias iCloud="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+alias obsidian="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
+alias Notes="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian Vault/Notes"
+
+# C++ project shortcuts
+alias Tcp='cd ~/Code/02_c++/basic/tcp'
+alias Primer='cd ~/Code/02_C++/study/C++Primer-demo'
+alias algorithm='cd ~/Code/02_c++/study/algorithm'
 alias Linux='cd ~/Code/02_C++/Linux/'
-alias obsidian='cd /Users/geewinter/Library/Mobile\ Documents/iCloud~md~obsidian/Documents'
-alias iCloud='cd /Users/geewinter/Library/Mobile\ Documents/com~apple~CloudDocs'
