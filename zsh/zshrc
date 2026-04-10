@@ -1,0 +1,167 @@
+# Run expensive startup initialization only once per shell process.
+typeset -gi __BIC_ZSH_FIRST_LOAD=${+__BIC_ZSH_INIT_DONE}
+
+# Enable Powerlevel10k instant prompt during the first shell startup.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if (( ! __BIC_ZSH_FIRST_LOAD )) && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Start configuration added by Zim Framework install {{{
+#
+# User configuration sourced by interactive shells
+#
+
+# -----------------
+# Zsh configuration
+# -----------------
+
+#
+# History
+#
+
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
+# Disable cross-session history sharing (Zim enables SHARE_HISTORY by default).
+unsetopt SHARE_HISTORY
+# Append to history file immediately instead of overwriting on shell exit.
+setopt INC_APPEND_HISTORY
+
+#
+# Input/output
+#
+
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -e
+
+# Prompt for spelling correction of commands.
+#setopt CORRECT
+
+# Customize spelling correction prompt.
+#SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+
+# Remove path separator from WORDCHARS.
+WORDCHARS=${WORDCHARS//[\/]}
+
+# --------------------
+# Module configuration
+# --------------------
+
+#
+# git
+#
+
+# Set a custom prefix for the generated aliases. The default prefix is 'G'.
+#zstyle ':zim:git' aliases-prefix 'g'
+
+#
+# input
+#
+
+# Append `../` to your input for each `.` you type after an initial `..`
+#zstyle ':zim:input' double-dot-expand yes
+
+#
+# termtitle
+#
+
+# Set a custom terminal title format using prompt expansion escape sequences.
+# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
+# If none is provided, the default '%n@%m: %~' is used.
+#zstyle ':zim:termtitle' format '%1~'
+
+#
+# zsh-autosuggestions
+#
+
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Customize the style that the suggestions are shown with.
+# See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+
+#
+# zsh-syntax-highlighting
+#
+
+# Set what highlighters will be used.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# Customize the main highlighter styles.
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md#how-to-tweak-it
+#typeset -A ZSH_HIGHLIGHT_STYLES
+#ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
+
+# yazi
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+# ------------------
+# Initialize modules
+# ------------------
+
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+ZIM_CONFIG_FILE=${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc}
+
+if (( ! __BIC_ZSH_FIRST_LOAD )); then
+  # Keep init.zsh in sync locally. Initial install/bootstrap stays manual.
+  if [[ -r ${ZIM_HOME}/zimfw.zsh && -r ${ZIM_CONFIG_FILE} && ( ! -r ${ZIM_HOME}/init.zsh || ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ) ]]; then
+    source ${ZIM_HOME}/zimfw.zsh init
+  fi
+
+  # Initialize Zim modules during the first shell startup only.
+  if [[ -r ${ZIM_HOME}/init.zsh ]]; then
+    source ${ZIM_HOME}/init.zsh
+  fi
+
+  # Load p10k settings after the theme is available, but still during initial startup.
+  if (( $+functions[p10k] )) && [[ -r ~/.p10k.zsh ]]; then
+    source ~/.p10k.zsh
+  fi
+fi
+# }}} End configuration added by Zim Framework install
+
+# Source custom configurations
+[[ -r ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
+[[ -r ~/.config/zsh/vi.zsh ]] && source ~/.config/zsh/vi.zsh
+
+# Environment
+typeset -U path PATH
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+path=(
+  "$HOME/.local/bin"
+  "$HOME/.antigravity/antigravity/bin"
+  "$HOME/.opencode/bin"
+  $path
+)
+
+export EDITOR=nvim
+
+# Bind Ctrl-o to clear the terminal screen.
+bindkey '^O' clear-screen
+
+(( ! ${+functions[p10k]} )) || p10k finalize
+typeset -gi __BIC_ZSH_INIT_DONE=1
+
+# Homebrew 中科大镜像源
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
+# 绕过代理访问国内镜像源
+export NO_PROXY="mirrors.ustc.edu.cn,127.0.0.1,localhost"
+export no_proxy="mirrors.ustc.edu.cn,127.0.0.1,localhost"
+
+# fzf 快捷键绑定
+source /opt/homebrew/opt/fzf/shell/key-bindings.zsh

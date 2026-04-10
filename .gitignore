@@ -13,8 +13,9 @@
 !kitty/
 !kitty/current-theme.conf
 
-# Zsh（不纳入版本管理）
-zsh/
+# Zsh
+!zsh/
+!zsh/zshrc
 
 # Vim
 !vim/
