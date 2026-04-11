@@ -23,9 +23,8 @@ fi
 
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
-# Disable cross-session history sharing (Zim enables SHARE_HISTORY by default).
-unsetopt SHARE_HISTORY
-# Append to history file immediately instead of overwriting on shell exit.
+# SHARE_HISTORY 由 zim environment 模块启用，需要在 zim 初始化后禁用
+# unsetopt SHARE_HISTORY 见下方 zim 初始化之后
 setopt INC_APPEND_HISTORY
 
 #
@@ -133,6 +132,9 @@ if (( ! __BIC_ZSH_FIRST_LOAD )); then
   fi
 fi
 # }}} End configuration added by Zim Framework install
+
+# 禁用跨 pane 历史共享（zim environment 模块会启用 SHARE_HISTORY）
+unsetopt SHARE_HISTORY
 
 # Source custom configurations
 [[ -r ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
