@@ -125,11 +125,6 @@ if (( ! __BIC_ZSH_FIRST_LOAD )); then
   if [[ -r ${ZIM_HOME}/init.zsh ]]; then
     source ${ZIM_HOME}/init.zsh
   fi
-
-  # Load p10k settings after the theme is available, but still during initial startup.
-  if (( $+functions[p10k] )) && [[ -r ~/.p10k.zsh ]]; then
-    source ~/.p10k.zsh
-  fi
 fi
 # }}} End configuration added by Zim Framework install
 
@@ -172,3 +167,6 @@ export no_proxy="mirrors.ustc.edu.cn,127.0.0.1,localhost"
 
 # fzf 快捷键绑定
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/p10k.zsh.
+[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
