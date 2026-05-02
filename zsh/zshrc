@@ -170,3 +170,15 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/p10k.zsh.
 [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+
+# tmux: 在目录变化时通知 tmux 更新 pane_current_path
+if [[ -n "$TMUX" ]]; then
+  function _tmux_update_pane_path() {
+    emulate -L zsh
+    [[ "$PWD" != "$_tmux_last_pwd" ]] || return
+    _tmux_last_pwd="$PWD"
+    tmux set-option -p pane-current-path "$PWD" 2>/dev/null
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook chpwd _tmux_update_pane_path
+fi
