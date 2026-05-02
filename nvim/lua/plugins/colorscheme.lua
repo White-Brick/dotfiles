@@ -40,7 +40,7 @@ return {
 		opts = {
 			-- theme = custom_gruvbox,
 			theme = (function()
-				local gruvbox_theme = require("lualine.themes.gruvbox_dark")
+				local gruvbox_theme = require("lualine.themes.gruvbox")
 				gruvbox_theme.insert.a.bg = "#F0E68C" -- "#005f87"
 				gruvbox_theme.visual.a.bg = "#808000" -- "#3CB371"
 				gruvbox_theme.command.a.bg = "#6495ED"

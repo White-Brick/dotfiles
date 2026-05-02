@@ -39,7 +39,7 @@ keymap.set("n", "<Left>", "7h", opts)
 keymap.set("n", "<Right>", "7l", opts)
 
 -- New tab
-keymap.set("n", "te", "tabedit")
+keymap.set("n", "te", "<Cmd>tabedit<CR>", opts)
 
 -- Split window
 -- keymap.set("n", "ss", ":split<Return>", opts)
