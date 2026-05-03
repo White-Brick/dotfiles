@@ -168,8 +168,13 @@ export no_proxy="mirrors.ustc.edu.cn,127.0.0.1,localhost"
 # fzf 快捷键绑定
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/p10k.zsh.
-[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+# To customize prompt, run `p10k configure` or edit p10k config file.
+# Try XDG path first, fallback to traditional path
+if [[ -f ~/.config/zsh/p10k.zsh ]]; then
+  source ~/.config/zsh/p10k.zsh
+elif [[ -f ~/.p10k.zsh ]]; then
+  source ~/.p10k.zsh
+fi
 
 # tmux: 在目录变化时通知 tmux 更新 pane_current_path
 if [[ -n "$TMUX" ]]; then
