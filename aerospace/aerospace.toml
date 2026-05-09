@@ -224,6 +224,11 @@ run = ['layout floating']
 if.app-id = 'com.tencent.xinWeChat'
 run = ['layout floating']
 
+# WeCom (企业微信)
+[[on-window-detected]]
+if.app-id = 'com.tencent.WeWorkMac'
+run = ['layout floating']
+
 # Feishu / Lark
 [[on-window-detected]]
 if.app-id = 'com.electron.lark'
