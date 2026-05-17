@@ -88,6 +88,7 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-b = 'workspace Browser'
 alt-c = 'workspace Code'
+alt-e = 'workspace Excel'
 alt-f = 'workspace Finder'
 alt-m = 'workspace Music'
 alt-n = 'workspace Numbers'
@@ -100,6 +101,7 @@ alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
 alt-shift-b = ['move-node-to-workspace Browser', 'workspace Browser']
 alt-shift-c = ['move-node-to-workspace Code', 'workspace Code']
+alt-shift-e = ['move-node-to-workspace Excel', 'workspace Excel']
 alt-shift-f = ['move-node-to-workspace Finder', 'workspace Finder']
 alt-shift-m = ['move-node-to-workspace Music', 'workspace Music']
 alt-shift-n = ['move-node-to-workspace Numbers', 'workspace Numbers']
@@ -193,6 +195,16 @@ run = ['move-node-to-workspace Code']
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
 run = ['move-node-to-workspace Code']
+
+# ChatGPT
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = ['move-node-to-workspace Code']
+
+# Microsoft Excel
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = ['move-node-to-workspace Excel']
 ####################
 #floating layer applications
 ####################
