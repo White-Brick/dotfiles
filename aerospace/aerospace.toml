@@ -133,6 +133,7 @@ alt-shift-l = ['join-with right', 'mode main']
 # Safari
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
+if.during-aerospace-startup = true
 run = ['move-node-to-workspace Browser']
 
 # Kitty
@@ -153,6 +154,7 @@ run = ['move-node-to-workspace Music']
 # Numbers
 [[on-window-detected]]
 if.app-id = 'com.apple.Numbers'
+if.during-aerospace-startup = true
 run = ['move-node-to-workspace Numbers']
 
 # # Calendar
@@ -168,6 +170,7 @@ run = ['move-node-to-workspace Numbers']
 # Finder
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
+if.during-aerospace-startup = true
 check-further-callbacks = true
 run = ['move-node-to-workspace Finder']
 
@@ -204,6 +207,7 @@ run = ['move-node-to-workspace Code']
 # Microsoft Excel
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
+if.during-aerospace-startup = true
 run = ['move-node-to-workspace Excel']
 ####################
 #floating layer applications
