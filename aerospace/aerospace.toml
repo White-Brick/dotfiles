@@ -52,12 +52,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
-outer.left =       5
-outer.bottom =     5
-outer.top =        5
-outer.right =      5
+inner.horizontal = 3
+inner.vertical =   3
+outer.left =       3
+outer.bottom =     3
+outer.top =        3
+outer.right =      3
 
 # 'main' binding mode — use default opt (alt) style shortcuts
 [mode.main.binding]
@@ -133,7 +133,6 @@ alt-shift-l = ['join-with right', 'mode main']
 # Safari
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace Browser']
 
 # Kitty
@@ -170,7 +169,6 @@ run = ['move-node-to-workspace Numbers']
 # Finder
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-if.during-aerospace-startup = true
 check-further-callbacks = true
 run = ['move-node-to-workspace Finder']
 
