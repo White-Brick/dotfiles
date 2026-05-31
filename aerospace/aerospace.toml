@@ -205,7 +205,6 @@ run = ['move-node-to-workspace Code']
 # Microsoft Excel
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace Excel']
 ####################
 #floating layer applications

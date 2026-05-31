@@ -18,7 +18,7 @@ return {
             "--clang-tidy",
             "--header-insertion=iwyu",
             "--completion-style=detailed",
-            "--function-arg-placeholders",
+            "--function-arg-placeholders=true",  -- 修复：clangd 22.1.5 需要明确的布尔值
             "--query-driver=/opt/homebrew/opt/llvm/bin/clang++",
             "--fallback-style=llvm",
           },

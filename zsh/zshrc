@@ -23,6 +23,10 @@ fi
 
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+# Remove superfluous blanks from each command line being added to the history.
+setopt HIST_REDUCE_BLANKS
+# Do not enter command lines into the history list if they are duplicates of the previous event.
+setopt HIST_IGNORE_SPACE
 # SHARE_HISTORY 由 zim environment 模块启用，需要在 zim 初始化后禁用
 # unsetopt SHARE_HISTORY 见下方 zim 初始化之后
 setopt INC_APPEND_HISTORY
