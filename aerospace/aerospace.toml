@@ -88,12 +88,11 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-b = 'workspace Browser'
 alt-c = 'workspace Code'
-alt-e = 'workspace Excel'
-alt-f = 'workspace Finder'
+alt-f = 'workspace Fd'
 alt-g = 'workspace ChatGPT'
+alt-i = 'workspace IM'
 alt-m = 'workspace Music'
-alt-n = 'workspace Numbers'
-alt-o = 'workspace Obsidian'
+alt-o = 'workspace Office'
 alt-t = 'workspace Terminal'
 
 # Move node to workspace and follow
@@ -102,12 +101,11 @@ alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
 alt-shift-b = ['move-node-to-workspace Browser', 'workspace Browser']
 alt-shift-c = ['move-node-to-workspace Code', 'workspace Code']
-alt-shift-e = ['move-node-to-workspace Excel', 'workspace Excel']
-alt-shift-f = ['move-node-to-workspace Finder', 'workspace Finder']
+alt-shift-f = ['move-node-to-workspace Fd', 'workspace Fd']
 alt-shift-g = ['move-node-to-workspace ChatGPT', 'workspace ChatGPT']
+alt-shift-i = ['move-node-to-workspace IM', 'workspace IM']
 alt-shift-m = ['move-node-to-workspace Music', 'workspace Music']
-alt-shift-n = ['move-node-to-workspace Numbers', 'workspace Numbers']
-alt-shift-o = ['move-node-to-workspace Obsidian', 'workspace Obsidian']
+alt-shift-o = ['move-node-to-workspace Office', 'workspace Office']
 alt-shift-t = ['move-node-to-workspace Terminal', 'workspace Terminal']
 
 # Workspace back-and-forth / move to monitor
@@ -145,7 +143,7 @@ run = ['move-node-to-workspace Terminal']
 # Obsidian
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = ['move-node-to-workspace Obsidian']
+run = ['move-node-to-workspace Office']
 
 # Music
 [[on-window-detected]]
@@ -156,7 +154,7 @@ run = ['move-node-to-workspace Music']
 [[on-window-detected]]
 if.app-id = 'com.apple.Numbers'
 if.during-aerospace-startup = true
-run = ['move-node-to-workspace Numbers']
+run = ['move-node-to-workspace Office']
 
 # # Calendar
 # [[on-window-detected]]
@@ -172,12 +170,12 @@ run = ['move-node-to-workspace Numbers']
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 check-further-callbacks = true
-run = ['move-node-to-workspace Finder']
+run = ['move-node-to-workspace Fd']
 
 # Commander One PRO
 [[on-window-detected]]
 if.app-id = 'com.eltima.cmd1.pro.mas'
-run = ['move-node-to-workspace Finder']
+run = ['move-node-to-workspace Fd']
 
 # VSCode
 [[on-window-detected]]
@@ -202,12 +200,17 @@ run = ['move-node-to-workspace Code']
 # ChatGPT
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = ['move-node-to-workspace ChatGPT', 'workspace ChatGPT']
+run = ['move-node-to-workspace ChatGPT']
+
+# Microsoft Word
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Word'
+run = ['move-node-to-workspace Office']
 
 # Microsoft Excel
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
-run = ['move-node-to-workspace Excel']
+run = ['move-node-to-workspace Office']
 ####################
 #floating layer applications
 ####################
@@ -219,11 +222,11 @@ run = ['layout floating', 'move-node-to-workspace Game' ]
 # Telegram
 [[on-window-detected]]
 if.app-id = 'org.telegram.desktop'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace IM']
 
 [[on-window-detected]]
 if.app-id = 'com.tdesktop.Telegram'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace IM']
 
 # Calibre
 [[on-window-detected]]
@@ -237,17 +240,22 @@ run = ['layout floating']
 # WeChat
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace IM']
 
 # WeCom (企业微信)
 [[on-window-detected]]
 if.app-id = 'com.tencent.WeWorkMac'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace IM']
 
 # Feishu / Lark
 [[on-window-detected]]
 if.app-id = 'com.electron.lark'
-run = ['layout floating']
+run = ['layout floating', 'move-node-to-workspace IM']
+
+# Feishu Meeting
+[[on-window-detected]]
+if.app-id = 'com.electron.lark.iron'
+run = ['layout floating', 'move-node-to-workspace IM']
 
 # Karabiner-Elements
 [[on-window-detected]]
