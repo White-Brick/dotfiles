@@ -86,7 +86,7 @@ alt-equal = 'resize smart +50'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
-alt-b = 'workspace Web'
+alt-w = 'workspace Web'
 alt-c = 'workspace Code'
 alt-f = 'workspace Fd'
 alt-g = 'workspace GPT'
@@ -99,7 +99,7 @@ alt-t = 'workspace Term'
 alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
-alt-shift-b = ['move-node-to-workspace Web', 'workspace Web']
+alt-shift-w = ['move-node-to-workspace Web', 'workspace Web']
 alt-shift-c = ['move-node-to-workspace Code', 'workspace Code']
 alt-shift-f = ['move-node-to-workspace Fd', 'workspace Fd']
 alt-shift-g = ['move-node-to-workspace GPT', 'workspace GPT']
@@ -296,6 +296,11 @@ run = ['layout floating']
 # Deskflow
 [[on-window-detected]]
 if.app-id = 'org.deskflow.deskflow'
+run = ['layout floating']
+
+# Baidu Netdisk
+[[on-window-detected]]
+if.app-id = 'com.baidu.BaiduNetdisk-mac'
 run = ['layout floating']
 
 ####################
