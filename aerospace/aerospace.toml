@@ -303,6 +303,11 @@ run = ['layout floating']
 if.app-id = 'com.baidu.BaiduNetdisk-mac'
 run = ['layout floating']
 
+# Session
+[[on-window-detected]]
+if.app-id = 'com.philipyoungg.session'
+run = ['layout floating', 'move-node-to-workspace IM']
+
 ####################
 #system floating applications
 ####################
