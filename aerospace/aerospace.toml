@@ -135,6 +135,11 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'com.apple.Safari'
 run = ['move-node-to-workspace Web']
 
+# Chrome
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = ['move-node-to-workspace Web']
+
 # Kitty
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
