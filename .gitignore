@@ -32,13 +32,17 @@
 !tmux/
 !tmux/pane_label.sh
 
-# OpenCode
+# OpenCode（密钥用 {env:...}，勿提交明文 apiKey）
 !opencode/
 !opencode/AGENTS.md
+!opencode/README.md
 !opencode/.gitignore
-!opencode/package.json
+!opencode/opencode.json
+!opencode/ecc-model-overlay.json
 !opencode/oh-my-opencode.json
-opencode/opencode.json
+!opencode/oh-my-openagent.jsonc
+!opencode/plugins/
+!opencode/plugins/rtk.ts
 
 # Zim
 !zim/

@@ -10,16 +10,16 @@
   },
   "agents": {
     "sisyphus": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "hephaestus": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "oracle": {
-      "model": "claude-code/claude-opus-4-6",
-      "variant": "max"
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh"
     },
     "librarian": {
       "model": "kimi-for-coding/k2p5"
@@ -28,26 +28,26 @@
       "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "multimodal-looker": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "medium"
     },
     "prometheus": {
-      "model": "claude-code/claude-opus-4-6",
-      "variant": "max"
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh"
     },
     "metis": {
-      "model": "claude-code/claude-opus-4-6",
-      "variant": "max"
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh"
     },
     "momus": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "atlas": {
       "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "sisyphus-junior": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     }
   },
@@ -56,16 +56,16 @@
       "model": "kimi-for-coding/k2p5"
     },
     "ultrabrain": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "artistry": {
-      "model": "claude-code/claude-opus-4-6",
-      "variant": "max"
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh"
     },
     "quick": {
       "model": "zhipuai-coding-plan/glm-5-turbo"
@@ -74,7 +74,7 @@
       "model": "zhipuai-coding-plan/glm-5-turbo"
     },
     "unspecified-high": {
-      "model": "codex/gpt-5.4",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "writing": {
