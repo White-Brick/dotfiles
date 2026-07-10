@@ -197,14 +197,9 @@ run = ['move-node-to-workspace Code']
 if.app-id = 'com.google.antigravity'
 run = ['move-node-to-workspace Code']
 
-# Codex
+# ChatGPT（合并后 bundle id 为 com.openai.codex）
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
-run = ['move-node-to-workspace Code']
-
-# ChatGPT
-[[on-window-detected]]
-if.app-id = 'com.openai.chat'
 run = ['move-node-to-workspace GPT']
 
 # Microsoft Word
