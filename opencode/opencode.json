@@ -96,19 +96,7 @@
     "refactor-cleaner": {
       "model": "openai/gpt-5.6-sol"
     },
-    "go-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "go-build-resolver": {
-      "model": "kimi-for-coding/k2p7"
-    },
     "database-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "cpp-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "cpp-build-resolver": {
       "model": "kimi-for-coding/k2p7"
     },
     "docs-lookup": {
@@ -117,31 +105,10 @@
     "harness-optimizer": {
       "model": "kimi-for-coding/k2p7"
     },
-    "java-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "java-build-resolver": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "kotlin-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "kotlin-build-resolver": {
-      "model": "kimi-for-coding/k2p7"
-    },
     "loop-operator": {
       "model": "kimi-for-coding/k2p7"
     },
-    "php-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
     "python-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "rust-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "rust-build-resolver": {
       "model": "kimi-for-coding/k2p7"
     }
   }
