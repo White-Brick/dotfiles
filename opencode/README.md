@@ -17,8 +17,7 @@
 ## 新机步骤
 
 ```bash
-# 1. 装 opencode CLI，导出密钥（勿写入 json）
-export ZHIPUAI_CODING_PLAN_API_KEY='...'
+# 1. 装 opencode CLI
 
 # 2. 装 ECC 到 ~/.opencode（按你平时的方式）
 # npx ecc-install ... 或 ECC install.sh
@@ -26,7 +25,7 @@ export ZHIPUAI_CODING_PLAN_API_KEY='...'
 # 3. 同步本目录到 ~/.config/opencode/
 # 若用 stow/symlink，确保 opencode/ 链到此处
 
-# 4. （可选）把 ECC 模型写回安装树，防止 home 配置覆盖全局
+# 4. （可选）把 ECC 模型写回安装树
 node -e '
 const fs=require("fs");
 const path=require("path");
@@ -45,6 +44,7 @@ console.log("merged ecc models into", home);
 '
 ```
 
-## 密钥
+## 说明
 
-`opencode.json` 使用 `{env:ZHIPUAI_CODING_PLAN_API_KEY}`，在 shell 或私密 env 文件中设置。
+- 自定义 provider 仅保留 `glm-xy`（无明文密钥）
+- oh-my 配置里若仍写 `zhipuai-coding-plan/*`，需自行改模型 id 或另配该 provider

@@ -58,11 +58,6 @@
           }
         }
       }
-    },
-    "zhipuai-coding-plan": {
-      "options": {
-        "apiKey": "{env:ZHIPUAI_CODING_PLAN_API_KEY}"
-      }
     }
   },
   "agent": {
