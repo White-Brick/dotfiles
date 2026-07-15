@@ -1,9 +1,12 @@
 # RunCat Neo 市场价格
 
-本目录基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新两个 Custom Metrics 数据源：
+所有 RunCat Neo 运行 JSON 统一存放在 `~/.runcat/`：
 
+- `~/.runcat/codex.json`：由 Codex Stop hook 更新的账号额度。
 - `~/.runcat/bitcoin.json`：优先使用 CoinGecko 的 BTC/USD；CoinGecko 限流或不可用时使用 XAUS 的 `btc_usd`。
 - `~/.runcat/gold.json`：XAUS 的 XAU/USD 现货价，单位为美元/金衡盎司。
+
+本目录的市场更新器基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新 Bitcoin 和黄金两个 Custom Metrics 数据源。
 
 ## 安装
 
