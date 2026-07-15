@@ -44,7 +44,12 @@
 !opencode/plugins/
 !opencode/plugins/rtk.ts
 
+# Codex RunCat Neo integration
+!codex/
+!codex/README.md
+!codex/hooks.json
+!codex/runcat-hook.py
+
 # Zim
 !zim/
 !zim/zimrc
-
