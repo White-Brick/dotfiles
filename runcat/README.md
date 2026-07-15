@@ -11,14 +11,36 @@
 
 Codex hook 基于 [RunCat Neo 官方 Codex 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/codex)，定制为只显示账号额度、不显示 Context。菜单栏优先显示第一个可用额度窗口。
 
-安装文件级符号链接：
+安装文件级符号链接与本机 hooks（`hooks.json` 含绝对路径，不进 Git）：
 
 ```bash
-ln -s ~/.config/codex/runcat-hook.py ~/.codex/runcat-hook.py
-ln -s ~/.config/codex/hooks.json ~/.codex/hooks.json
+mkdir -p ~/.codex ~/.runcat
+ln -sf ~/.config/codex/runcat-hook.py ~/.codex/runcat-hook.py
+
+# 每台机器各自创建 hooks.json（绝对路径，勿写 $HOME）
+cat > ~/.config/codex/hooks.json <<EOF
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.codex/runcat-hook.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+EOF
+ln -sf ~/.config/codex/hooks.json ~/.codex/hooks.json
 ```
 
-重启 Codex 后，通过 `/hooks` 检查并信任该 hook。完成一轮对话后会生成 `~/.runcat/codex.json`。
+Codex 不经 shell 直接 exec hook 命令，因此必须用绝对路径（官方示例同样如此）。
+
+重启 Codex 后，通过 `/hooks` 检查并信任该 hook。完成一轮对话后会生成 `~/.runcat/codex.json`。若 `/hooks` 不可用，在 `~/.codex/config.toml` 加 `hooks = true` 后重启。
 
 不要链接整个 `~/.codex`：该目录还包含会话、缓存及其他本机状态。
 

@@ -45,8 +45,8 @@
 !opencode/plugins/rtk.ts
 
 # Codex RunCat Neo integration
+# hooks.json 含本机绝对路径，不追踪
 !codex/
-!codex/hooks.json
 !codex/runcat-hook.py
 
 # RunCat Neo market metrics

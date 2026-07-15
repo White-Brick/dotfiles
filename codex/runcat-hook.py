@@ -68,6 +68,13 @@ def rate_limit_metrics(token_count):
     return metrics
 
 
+def local_updated_metric(now):
+    return {
+        "title": "Updated",
+        "formattedValue": now.astimezone().strftime("%m-%d %H:%M"),
+    }
+
+
 def write_snapshot(hook_input):
     model = hook_input.get("model")
     if isinstance(model, str):
@@ -76,15 +83,17 @@ def write_snapshot(hook_input):
         model = ""
     if not model:
         model = "Codex"
+    now = datetime.now(timezone.utc)
     token_count = latest_token_count(hook_input.get("transcript_path"))
     quota_metrics = rate_limit_metrics(token_count)
     metrics = [{"title": "Model", "formattedValue": model}]
     metrics.extend(quota_metrics)
+    metrics.append(local_updated_metric(now))
     snapshot = {
         "title": "Codex",
         "symbol": "camera.aperture",
         "metrics": metrics,
-        "lastUpdatedDate": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "lastUpdatedDate": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
     if quota_metrics:
         snapshot["metricsBarValue"] = quota_metrics[0]["formattedValue"]
