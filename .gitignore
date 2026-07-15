@@ -46,7 +46,6 @@
 
 # Codex RunCat Neo integration
 !codex/
-!codex/README.md
 !codex/hooks.json
 !codex/runcat-hook.py
 
