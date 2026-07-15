@@ -54,17 +54,6 @@ def latest_token_count(transcript_path):
     return latest
 
 
-def context_metric(token_count):
-    info = (token_count or {}).get("info") or {}
-    used_tokens = (info.get("last_token_usage") or {}).get("total_tokens")
-    context_window = info.get("model_context_window")
-    if not isinstance(used_tokens, (int, float)) or not isinstance(context_window, (int, float)):
-        return None
-    if context_window <= 0:
-        return None
-    return percentage_metric("Context", used_tokens / context_window * 100)
-
-
 def rate_limit_metrics(token_count):
     rate_limits = (token_count or {}).get("rate_limits") or {}
     metrics = []
@@ -88,19 +77,17 @@ def write_snapshot(hook_input):
     if not model:
         model = "Codex"
     token_count = latest_token_count(hook_input.get("transcript_path"))
-    context = context_metric(token_count)
+    quota_metrics = rate_limit_metrics(token_count)
     metrics = [{"title": "Model", "formattedValue": model}]
-    if context is not None:
-        metrics.append(context)
-    metrics.extend(rate_limit_metrics(token_count))
+    metrics.extend(quota_metrics)
     snapshot = {
         "title": "Codex",
         "symbol": "camera.aperture",
         "metrics": metrics,
         "lastUpdatedDate": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
-    if context is not None:
-        snapshot["metricsBarValue"] = context["formattedValue"]
+    if quota_metrics:
+        snapshot["metricsBarValue"] = quota_metrics[0]["formattedValue"]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     file_descriptor, temporary_path = tempfile.mkstemp(prefix=".runcat-", dir=str(OUT.parent))
     try:

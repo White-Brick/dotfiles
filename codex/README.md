@@ -2,7 +2,7 @@
 
 ## RunCat Neo 指标
 
-本目录跟踪 [RunCat Neo 官方 Codex 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/codex)及其 hook 配置。Codex 每轮结束后会生成本机文件 `~/.codex/runcat-usage.json`。
+本目录基于 [RunCat Neo 官方 Codex 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/codex)跟踪 hook 配置，并定制为只显示账号额度、不显示 Context。菜单栏优先显示第一个可用额度窗口。Codex 每轮结束后会生成本机文件 `~/.codex/runcat-usage.json`。
 
 安装文件级符号链接：
 
