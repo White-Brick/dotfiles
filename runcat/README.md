@@ -3,10 +3,9 @@
 所有 RunCat Neo 运行 JSON 统一存放在 `~/.runcat/`：
 
 - `~/.runcat/codex.json`：由 Codex Stop hook 更新的账号额度。
-- `~/.runcat/bitcoin.json`：优先使用 CoinGecko 的 BTC/USD；CoinGecko 限流或不可用时使用 XAUS 的 `btc_usd`。
-- `~/.runcat/gold.json`：XAUS 的 XAU/USD 现货价，单位为美元/金衡盎司。
+- `~/.runcat/markets.json`：在同一张卡片中显示 Bitcoin 和 Gold（XAU）。
 
-本目录的市场更新器基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新 Bitcoin 和黄金两个 Custom Metrics 数据源。
+本目录的市场更新器基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新组合市场卡片。Bitcoin 优先使用 CoinGecko 的 BTC/USD，接口不可用时使用 XAUS 的 `btc_usd`；Gold 使用 XAUS 的 XAU/USD 现货价。
 
 ## Codex 额度
 
@@ -38,11 +37,10 @@ launchctl bootstrap gui/$(id -u) \
 
 ## RunCat Neo 数据源
 
-在 RunCat Neo 中打开 Settings → Metrics → Custom Metrics，分别添加：
+在 RunCat Neo 中打开 Settings → Metrics → Custom Metrics，添加：
 
 - `~/.runcat/codex.json`
-- `~/.runcat/bitcoin.json`
-- `~/.runcat/gold.json`
+- `~/.runcat/markets.json`
 
 隐藏目录可通过 `⌘⇧G` 输入完整路径。需要显示菜单栏价格时，在 Metrics Bar 中打开对应数据源的开关。
 
@@ -60,4 +58,4 @@ launchctl print gui/$(id -u)/dev.runcat.market-prices
 launchctl bootout gui/$(id -u)/dev.runcat.market-prices
 ```
 
-脚本独立更新两个数据源。单个接口失败不会阻止另一个更新；失败的数据源保留最后一次成功快照。XAUS 报价不是 `fresh` 时不会覆盖现有黄金价格。
+只有 Bitcoin 与 Gold 本轮均成功时才原子更新 `markets.json`；任一接口失败或 XAUS 报价不是 `fresh` 时，保留上一次组合快照。

@@ -9,24 +9,21 @@ goldAPI="https://xaus.com/api/v1/spot"
 goldFetched=0
 goldResponse=""
 
-writeSnapshot() {
-    outputFile=$1
-    title=$2
-    symbol=$3
-    metricsBarValue=$4
-    metricTitle=$5
-    currentValue=$6
+writeMarketsSnapshot() {
     lastUpdatedDate=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    outputFile="$outputDirectory/markets.json"
+    metricsBarValue="BTC $bitcoinBarValue · XAU $goldBarValue"
 
     mkdir -p "$outputDirectory" || return 1
     temporaryFile=$(mktemp "$outputDirectory/.runcat-XXXXXX") || return 1
     if ! cat > "$temporaryFile" <<EOF
 {
-  "title": "$title",
-  "symbol": "$symbol",
+  "title": "Markets",
+  "symbol": "chart.line.uptrend.xyaxis",
   "metricsBarValue": "$metricsBarValue",
   "metrics": [
-    { "title": "$metricTitle", "formattedValue": "$currentValue" }
+    { "title": "Bitcoin", "formattedValue": "$bitcoinCurrentValue" },
+    { "title": "Gold (XAU)", "formattedValue": "$goldCurrentValue" }
   ],
   "lastUpdatedDate": "$lastUpdatedDate"
 }
@@ -73,8 +70,6 @@ updateBitcoin() {
         else printf "$%.2f", price
     }')
     bitcoinCurrentValue=$(awk -v price="$bitcoinPrice" 'BEGIN { printf "$%.2f", price }')
-    writeSnapshot "$outputDirectory/bitcoin.json" "Bitcoin" "bitcoinsign" \
-        "$bitcoinBarValue" "Current" "$bitcoinCurrentValue"
 }
 
 formatGold() {
@@ -112,11 +107,23 @@ updateGold() {
 
     goldBarValue=$(formatGold "$goldPrice" 0)
     goldCurrentValue="$(formatGold "$goldPrice" 2)/oz"
-    writeSnapshot "$outputDirectory/gold.json" "Gold" "dollarsign.circle" \
-        "$goldBarValue" "Spot" "$goldCurrentValue"
 }
 
 result=0
-updateBitcoin || result=1
-updateGold || result=1
+bitcoinUpdated=0
+goldUpdated=0
+
+if updateBitcoin; then
+    bitcoinUpdated=1
+else
+    result=1
+fi
+if updateGold; then
+    goldUpdated=1
+else
+    result=1
+fi
+if [ "$bitcoinUpdated" -eq 1 ] && [ "$goldUpdated" -eq 1 ]; then
+    writeMarketsSnapshot || result=1
+fi
 exit "$result"

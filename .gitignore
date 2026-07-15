@@ -54,6 +54,7 @@
 !runcat/README.md
 !runcat/dev.runcat.market-prices.plist
 !runcat/update-markets.sh
+!runcat/test-update-markets.sh
 
 # Zim
 !zim/
