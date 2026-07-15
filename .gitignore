@@ -50,6 +50,12 @@
 !codex/hooks.json
 !codex/runcat-hook.py
 
+# RunCat Neo market metrics
+!runcat/
+!runcat/README.md
+!runcat/dev.runcat.market-prices.plist
+!runcat/update-markets.sh
+
 # Zim
 !zim/
 !zim/zimrc
