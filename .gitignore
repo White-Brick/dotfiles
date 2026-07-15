@@ -43,6 +43,9 @@
 !opencode/oh-my-openagent.jsonc
 !opencode/plugins/
 !opencode/plugins/rtk.ts
+!opencode/plugins/runcat-usage.ts
+!opencode/tests/
+!opencode/tests/runcat-usage.test.mjs
 
 # Codex RunCat Neo integration
 # hooks.json 含本机绝对路径，不追踪

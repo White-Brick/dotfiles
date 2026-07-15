@@ -44,6 +44,19 @@ Codex 不经 shell 直接 exec hook 命令，因此必须用绝对路径（官�
 
 不要链接整个 `~/.codex`：该目录还包含会话、缓存及其他本机状态。
 
+## OpenCode 额度
+
+`opencode/plugins/runcat-usage.ts` 监听 OpenCode 的 `session.idle` 事件，在每轮对话结束后通过本机 Codex app-server 查询账号额度，并原子更新同一个 `~/.runcat/codex.json`。插件不读取 OAuth 文件；查询失败时保留上一次快照。
+
+OpenCode 退出时默认最多等待额度查询 10 秒；慢机器可通过 `RUNCAT_DISPOSE_GRACE_MS` 调整为 `0` 到 `15000` 毫秒。
+
+安装或更新插件后需要完全退出并重启 OpenCode。可运行确定性测试：
+
+```bash
+node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \
+  ~/.config/opencode/tests/runcat-usage.test.mjs
+```
+
 ## 市场价格
 
 ```bash
