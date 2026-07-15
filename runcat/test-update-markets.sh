@@ -42,11 +42,11 @@ PATH="$temporaryDirectory/bin:$PATH" \
 
 marketsFile="$temporaryDirectory/output/markets.json"
 test "$(plutil -extract title raw -o - "$marketsFile")" = "Markets"
-test "$(plutil -extract metricsBarValue raw -o - "$marketsFile")" = "BTC \$64.5K · XAU \$4,025"
-test "$(plutil -extract metrics.0.title raw -o - "$marketsFile")" = "Bitcoin"
-test "$(plutil -extract metrics.0.formattedValue raw -o - "$marketsFile")" = "\$64547.00"
-test "$(plutil -extract metrics.1.title raw -o - "$marketsFile")" = "Gold (XAU)"
-test "$(plutil -extract metrics.1.formattedValue raw -o - "$marketsFile")" = "\$4,025.00/oz"
+test "$(plutil -extract metricsBarValue raw -o - "$marketsFile")" = "BTC: \$64,547.00 · XAU: \$4,025.00"
+test "$(plutil -extract metrics.0.title raw -o - "$marketsFile")" = "BTC"
+test "$(plutil -extract metrics.0.formattedValue raw -o - "$marketsFile")" = "\$64,547.00"
+test "$(plutil -extract metrics.1.title raw -o - "$marketsFile")" = "XAU"
+test "$(plutil -extract metrics.1.formattedValue raw -o - "$marketsFile")" = "\$4,025.00"
 
 test ! -e "$temporaryDirectory/output/bitcoin.json"
 test ! -e "$temporaryDirectory/output/gold.json"

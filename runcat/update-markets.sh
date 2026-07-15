@@ -12,7 +12,7 @@ goldResponse=""
 writeMarketsSnapshot() {
     lastUpdatedDate=$(date -u +%Y-%m-%dT%H:%M:%SZ)
     outputFile="$outputDirectory/markets.json"
-    metricsBarValue="BTC $bitcoinBarValue · XAU $goldBarValue"
+    metricsBarValue="BTC: $bitcoinCurrentValue · XAU: $goldCurrentValue"
 
     mkdir -p "$outputDirectory" || return 1
     temporaryFile=$(mktemp "$outputDirectory/.runcat-XXXXXX") || return 1
@@ -22,8 +22,8 @@ writeMarketsSnapshot() {
   "symbol": "chart.line.uptrend.xyaxis",
   "metricsBarValue": "$metricsBarValue",
   "metrics": [
-    { "title": "Bitcoin", "formattedValue": "$bitcoinCurrentValue" },
-    { "title": "Gold (XAU)", "formattedValue": "$goldCurrentValue" }
+    { "title": "BTC", "formattedValue": "$bitcoinCurrentValue" },
+    { "title": "XAU", "formattedValue": "$goldCurrentValue" }
   ],
   "lastUpdatedDate": "$lastUpdatedDate"
 }
@@ -64,18 +64,11 @@ updateBitcoin() {
         return 1
     fi
 
-    bitcoinBarValue=$(awk -v price="$bitcoinPrice" 'BEGIN {
-        if (price >= 1000000) printf "$%.2fM", price / 1000000
-        else if (price >= 1000) printf "$%.1fK", price / 1000
-        else printf "$%.2f", price
-    }')
-    bitcoinCurrentValue=$(awk -v price="$bitcoinPrice" 'BEGIN { printf "$%.2f", price }')
+    bitcoinCurrentValue=$(formatPrice "$bitcoinPrice" 2)
 }
 
-formatGold() {
-    goldPrice=$1
-    goldDecimals=$2
-    awk -v price="$goldPrice" -v decimals="$goldDecimals" '
+formatPrice() {
+    awk -v price="$1" -v decimals="$2" '
         function addCommas(value, parts, count, integer, output) {
             count = split(value, parts, ".")
             integer = parts[1]
@@ -105,8 +98,7 @@ updateGold() {
         return 1
     fi
 
-    goldBarValue=$(formatGold "$goldPrice" 0)
-    goldCurrentValue="$(formatGold "$goldPrice" 2)/oz"
+    goldCurrentValue=$(formatPrice "$goldPrice" 2)
 }
 
 result=0
