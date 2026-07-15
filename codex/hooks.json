@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/geewinter/.codex/runcat-hook.py",
+            "command": "/usr/bin/python3 \"$HOME/.codex/runcat-hook.py\"",
             "timeout": 5
           }
         ]
