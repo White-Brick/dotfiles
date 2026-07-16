@@ -239,7 +239,12 @@ export const RunCatUsagePlugin: Plugin = async () => {
       activeRequest = request
       inFlight = request.promise
         .then(writeSnapshot)
-        .catch((error) => console.warn(`[runcat] Codex quota refresh failed: ${getSafeErrorMessage(error)}`))
+        .catch((error) => {
+          // 失败不影响会话；默认静默，避免刷屏干扰编码。需要排查时设 RUNCAT_VERBOSE=1
+          if (process.env.RUNCAT_VERBOSE === "1") {
+            console.warn(`[runcat] Codex quota refresh failed: ${getSafeErrorMessage(error)}`)
+          }
+        })
         .finally(() => {
           if (activeRequest === request) activeRequest = null
           inFlight = null
