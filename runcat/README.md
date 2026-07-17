@@ -9,13 +9,13 @@
 
 ## Codex 额度
 
-Codex hook 基于 [RunCat Neo 官方 Codex 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/codex)，定制为只显示账号额度、不显示 Context。菜单栏优先显示第一个可用额度窗口。
+Codex hook 基于 [RunCat Neo 官方 Codex 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/codex)，定制为显示账号额度及其下一次刷新时间、不显示 Context。菜单栏优先显示第一个可用额度窗口。
 
 安装文件级符号链接与本机 hooks（`hooks.json` 含绝对路径，不进 Git）：
 
 ```bash
 mkdir -p ~/.codex ~/.runcat
-ln -sf ~/.config/codex/runcat-hook.py ~/.codex/runcat-hook.py
+ln -sf ~/.config/runcat/codex-hook.py ~/.codex/runcat-hook.py
 
 # 每台机器各自创建 hooks.json（绝对路径，勿写 $HOME）
 cat > ~/.config/codex/hooks.json <<EOF

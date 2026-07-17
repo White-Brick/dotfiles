@@ -98,6 +98,12 @@ test("session.idle 查询额度并写入 RunCat JSON", async () => {
       formattedValue: "52%",
       normalizedValue: 0.52,
     })
+    const resetDate = new Date(1784682509 * 1000)
+    const pad = (value) => String(value).padStart(2, "0")
+    assert.deepEqual(snapshot.metrics[1], {
+      title: "7d Reset",
+      formattedValue: `${pad(resetDate.getMonth() + 1)}-${pad(resetDate.getDate())} ${pad(resetDate.getHours())}:${pad(resetDate.getMinutes())}`,
+    })
   } finally {
     await rm(fixture.directory, { recursive: true, force: true })
   }

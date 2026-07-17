@@ -9,6 +9,7 @@ import { randomUUID } from "node:crypto"
 type RateLimitWindow = {
   usedPercent?: number
   windowDurationMins?: number
+  resetsAt?: number
 }
 
 type RateLimits = {
@@ -73,6 +74,19 @@ function getPercentageMetric(window: RateLimitWindow | null | undefined) {
     title: getWindowTitle(window.windowDurationMins),
     formattedValue: `${formattedPercent}%`,
     normalizedValue: Math.round((usedPercent / 100) * 10000) / 10000,
+  }
+}
+
+function getResetMetric(window: RateLimitWindow | null | undefined) {
+  if (typeof window?.resetsAt !== "number" || typeof window.windowDurationMins !== "number") return null
+
+  const resetDate = new Date(window.resetsAt * 1000)
+  if (Number.isNaN(resetDate.getTime())) return null
+
+  const pad = (value: number) => String(value).padStart(2, "0")
+  return {
+    title: `${getWindowTitle(window.windowDurationMins)} Reset`,
+    formattedValue: `${pad(resetDate.getMonth() + 1)}-${pad(resetDate.getDate())} ${pad(resetDate.getHours())}:${pad(resetDate.getMinutes())}`,
   }
 }
 
@@ -187,12 +201,20 @@ function startRateLimitRequest() {
 }
 
 async function writeSnapshot(rateLimits: RateLimits) {
-  const quotaMetrics = [rateLimits.primary, rateLimits.secondary]
-    .map(getPercentageMetric)
-    .filter((metric) => metric !== null)
-    .filter((metric, index, metrics) => metrics.findIndex((item) => item.title === metric.title) === index)
+  const quotaWindows = [rateLimits.primary, rateLimits.secondary]
+    .map((window) => ({ window, percentageMetric: getPercentageMetric(window) }))
+    .filter((item) => item.percentageMetric !== null)
+    .filter(
+      (item, index, items) =>
+        items.findIndex((candidate) => candidate.percentageMetric?.title === item.percentageMetric?.title) === index,
+    )
 
-  if (quotaMetrics.length === 0) throw new Error("Codex app-server returned no rate-limit windows")
+  if (quotaWindows.length === 0) throw new Error("Codex app-server returned no rate-limit windows")
+
+  const quotaMetrics = quotaWindows.flatMap(({ window, percentageMetric }) => {
+    const resetMetric = getResetMetric(window)
+    return resetMetric ? [percentageMetric, resetMetric] : [percentageMetric]
+  })
 
   const now = new Date()
   const outputFile = process.env.RUNCAT_CODEX_OUT_FILE ?? join(homedir(), ".runcat", "codex.json")
@@ -201,7 +223,7 @@ async function writeSnapshot(rateLimits: RateLimits) {
   const snapshot = {
     title: "Codex",
     symbol: "camera.aperture",
-    metricsBarValue: quotaMetrics[0].formattedValue,
+    metricsBarValue: quotaWindows[0].percentageMetric.formattedValue,
     metrics: [...quotaMetrics, getUpdatedMetric(now)],
     lastUpdatedDate: now.toISOString().replace(/\.\d{3}Z$/, "Z"),
   }

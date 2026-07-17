@@ -47,14 +47,11 @@
 !opencode/tests/
 !opencode/tests/runcat-usage.test.mjs
 
-# Codex RunCat Neo integration
-# hooks.json 含本机绝对路径，不追踪
-!codex/
-!codex/runcat-hook.py
-
-# RunCat Neo market metrics
+# RunCat Neo integrations
+# Codex hooks.json 含本机绝对路径，不追踪
 !runcat/
 !runcat/README.md
+!runcat/codex-hook.py
 !runcat/dev.runcat.market-prices.plist
 !runcat/update-markets.sh
 !runcat/test-update-markets.sh

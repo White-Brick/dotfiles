@@ -25,6 +25,19 @@ def percentage_metric(title, used_percentage):
     }
 
 
+def reset_metric(title, resets_at):
+    if not isinstance(resets_at, (int, float)):
+        return None
+    try:
+        reset_time = datetime.fromtimestamp(resets_at).astimezone()
+    except (OSError, OverflowError, ValueError):
+        return None
+    return {
+        "title": f"{title} Reset",
+        "formattedValue": reset_time.strftime("%m-%d %H:%M"),
+    }
+
+
 def window_title(window_minutes):
     if not isinstance(window_minutes, (int, float)):
         return None
@@ -64,6 +77,9 @@ def rate_limit_metrics(token_count):
         metric = percentage_metric(title, limit.get("used_percent")) if title else None
         if metric is not None and title not in titles:
             metrics.append(metric)
+            reset = reset_metric(title, limit.get("resets_at"))
+            if reset is not None:
+                metrics.append(reset)
             titles.add(title)
     return metrics
 
