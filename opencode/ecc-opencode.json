@@ -8,11 +8,6 @@
   "plugin": [
     "./plugins"
   ],
-  "skills": {
-    "paths": [
-      "./skills"
-    ]
-  },
   "agent": {
     "go-reviewer": {
       "description": "Expert Go code reviewer specializing in idiomatic Go, concurrency patterns, error handling, and performance.",
