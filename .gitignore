@@ -39,8 +39,11 @@
 !opencode/.gitignore
 !opencode/opencode.json
 !opencode/ecc-model-overlay.json
-!opencode/oh-my-opencode.json
+!opencode/ecc-opencode.json
+!opencode/ecc-omo-slim.md
 !opencode/oh-my-openagent.jsonc
+!opencode/scripts/
+!opencode/scripts/apply-ecc-slim.sh
 !opencode/plugins/
 !opencode/plugins/rtk.ts
 !opencode/plugins/runcat-usage.ts
