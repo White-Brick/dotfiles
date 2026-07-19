@@ -1,21 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "python-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "go-reviewer": {
-      "model": "kimi-for-coding/k2p7"
-    },
-    "go-build-resolver": {
-      "model": "kimi-for-coding/k2p7"
-    }
-  },
-  "mcp": {},
-  "model": "glm-xy/glm-5.2",
-  "plugin": [
-    "oh-my-openagent@latest"
-  ],
   "provider": {
     "glm-xy": {
       "models": {
@@ -191,6 +175,5 @@
       "npm": "@ai-sdk/openai-compatible",
       "options": {}
     }
-  },
-  "small_model": "kimi-for-coding/k2p7"
+  }
 }
