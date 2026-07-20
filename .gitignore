@@ -34,22 +34,12 @@
 
 # OpenCode（密钥用 {env:...}，勿提交明文 apiKey）
 !opencode/
-!opencode/AGENTS.md
-!opencode/README.md
 !opencode/.gitignore
 !opencode/opencode.json
-!opencode/tui.json
-!opencode/ecc-model-overlay.json
-!opencode/ecc-opencode.json
-!opencode/ecc-omo-slim.md
 !opencode/oh-my-openagent.jsonc
-!opencode/scripts/
-!opencode/scripts/apply-ecc-slim.sh
 !opencode/plugins/
 !opencode/plugins/rtk.ts
 !opencode/plugins/runcat-usage.ts
-!opencode/tests/
-!opencode/tests/runcat-usage.test.mjs
 
 # RunCat Neo integrations
 # Codex hooks.json 含本机绝对路径，不追踪
