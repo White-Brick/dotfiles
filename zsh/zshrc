@@ -181,6 +181,11 @@ elif [[ -f ~/.p10k.zsh ]]; then
   source ~/.p10k.zsh
 fi
 
+# OpenTUI cannot auto-detect Kitty behind tmux; force Kitty's OSC 99 notifications.
+if [[ -n "${KITTY_WINDOW_ID:-}" ]]; then
+  export OPENTUI_NOTIFICATION_PROTOCOL=osc99
+fi
+
 # tmux: 在目录变化时通知 tmux 更新 pane_current_path
 if [[ -n "$TMUX" ]]; then
   function _tmux_update_pane_path() {
