@@ -38,6 +38,7 @@
 !opencode/README.md
 !opencode/.gitignore
 !opencode/opencode.json
+!opencode/tui.json
 !opencode/ecc-model-overlay.json
 !opencode/ecc-opencode.json
 !opencode/ecc-omo-slim.md
