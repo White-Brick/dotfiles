@@ -33,6 +33,7 @@
 # tmux
 !tmux/
 !tmux/pane_label.sh
+tmux/plugins/
 
 # OpenCode（密钥用 {env:...}，勿提交明文 apiKey）
 !opencode/
