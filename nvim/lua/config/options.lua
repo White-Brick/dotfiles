@@ -14,7 +14,7 @@ vim.opt.wrap = false
 -- vim.opt.shiftwidth = 4
 vim.opt.listchars = { tab = "→ ", trail = "·" }
 -- Disable lsp.log output
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true

@@ -28,15 +28,5 @@ return {
       { "<leader>me", "<cmd>RenderMarkdown expand<cr>", desc = "Expand Markdown Margin" },
       { "<leader>mc", "<cmd>RenderMarkdown contract<cr>", desc = "Contract Markdown Margin" },
     },
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {
-      conceal = true,
-      wrap = true,
-      theme = "auto",
-      fold = true,
-      preview_side = "right",
-      anti_conceal_margin = 1,
-    },
   },
 }

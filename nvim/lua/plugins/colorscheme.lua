@@ -37,15 +37,12 @@ return {
 		"nvim-lualine/lualine.nvim",
 		-- lazy = true,
 		-- priority = 1000,
-		opts = {
-			-- theme = custom_gruvbox,
-			theme = (function()
-				local gruvbox_theme = require("lualine.themes.gruvbox")
-				gruvbox_theme.insert.a.bg = "#F0E68C" -- "#005f87"
-				gruvbox_theme.visual.a.bg = "#808000" -- "#3CB371"
-				gruvbox_theme.command.a.bg = "#6495ED"
-				return gruvbox_theme
-			end)(),
-		},
+		opts = function(_, opts)
+			local gruvbox_theme = vim.deepcopy(require("lualine.themes.gruvbox"))
+			gruvbox_theme.insert.a.bg = "#F0E68C" -- "#005f87"
+			gruvbox_theme.visual.a.bg = "#808000" -- "#3CB371"
+			gruvbox_theme.command.a.bg = "#6495ED"
+			opts.options.theme = gruvbox_theme
+		end,
 	},
 }
