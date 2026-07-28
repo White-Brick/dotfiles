@@ -157,8 +157,7 @@ run = ['move-node-to-workspace Music']
 
 # Numbers
 [[on-window-detected]]
-if.app-id = 'com.apple.Numbers'
-if.during-aerospace-startup = true
+if.app-id = 'com.apple.iWork.Numbers'
 run = ['move-node-to-workspace Office']
 
 # # Calendar
