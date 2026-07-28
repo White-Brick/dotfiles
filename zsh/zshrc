@@ -135,6 +135,14 @@ fi
 # 禁用跨 pane 历史共享（zim environment 模块会启用 SHARE_HISTORY）
 unsetopt SHARE_HISTORY
 
+# fzf-tab: zim completion 默认用 %F{yellow}，会原样显示在 fzf 里
+# https://github.com/Aloxaf/fzf-tab#configure
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' switch-group '<' '>'
+# 空命令行 Tab 不补全全部 PATH 命令（避免 1000+ 候选）
+zstyle ':completion:*' insert-tab true
+
 # Source custom configurations
 [[ -r ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
 [[ -r ~/.config/zsh/aliases.local.zsh ]] && source ~/.config/zsh/aliases.local.zsh
