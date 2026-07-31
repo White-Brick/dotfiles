@@ -102,6 +102,9 @@ def write_snapshot(hook_input):
     now = datetime.now(timezone.utc)
     token_count = latest_token_count(hook_input.get("transcript_path"))
     quota_metrics = rate_limit_metrics(token_count)
+    # 已有快照时，无 token_count/额度则不覆盖，避免冲掉 opencode 等写入的完整额度卡
+    if OUT.exists() and (token_count is None or not quota_metrics):
+        return
     metrics = [{"title": "Model", "formattedValue": model}]
     metrics.extend(quota_metrics)
     metrics.append(local_updated_metric(now))
