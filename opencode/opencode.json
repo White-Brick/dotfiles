@@ -1,62 +1,35 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "kimi-for-coding/k2p7",
-  "small_model": "kimi-for-coding/k2p7",
-  "provider": {
-    "glm-xy": {
-      "models": {
-        "glm-4.6": {
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "name": "GLM 4.6",
-          "reasoning": true,
-          "tool_call": true
-        },
-        "glm-4.7": {
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "name": "GLM 4.7",
-          "reasoning": true,
-          "tool_call": true
-        },
-        "glm-5": {
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "name": "GLM 5",
-          "reasoning": true,
-          "tool_call": true
-        },
-        "glm-5.1": {
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "name": "GLM 5.1",
-          "reasoning": true,
-          "tool_call": true
-        },
-        "glm-5.2": {
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "name": "GLM 5.2",
-          "reasoning": true,
-          "tool_call": true
-        }
-      },
-      "name": "glm-xy",
-      "npm": "@ai-sdk/anthropic",
-      "options": {
-        "baseURL": "https://biancheng.99code.me/v1"
-      }
+  "lsp": {
+    "python": {
+      "command": [
+        "basedpyright-langserver",
+        "--stdio"
+      ],
+      "extensions": [
+        ".py",
+        ".pyi"
+      ]
     },
+    "typescript": {
+      "command": [
+        "typescript-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".ts",
+        ".tsx",
+        ".js",
+        ".jsx",
+        ".mjs",
+        ".cjs",
+        ".mts",
+        ".cts"
+      ]
+    }
+  },
+  "model": "xai/grok-4.5",
+  "provider": {
     "kimi-for-coding": {
       "models": {
         "k2p7": {
@@ -178,14 +151,5 @@
       "options": {}
     }
   },
-  "lsp": {
-    "typescript": {
-      "command": ["typescript-language-server", "--stdio"],
-      "extensions": [".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".mts", ".cts"]
-    },
-    "python": {
-      "command": ["basedpyright-langserver", "--stdio"],
-      "extensions": [".py", ".pyi"]
-    }
-  }
+  "small_model": "kimi-for-coding/k2p7"
 }
