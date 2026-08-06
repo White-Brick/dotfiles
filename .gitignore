@@ -27,7 +27,6 @@
 !nvim/lua/plugins/
 !nvim/lua/config/*.lua
 !nvim/lua/plugins/*.lua
-!nvim/lazy-lock.json
 !nvim/lazyvim.json
 
 # tmux
