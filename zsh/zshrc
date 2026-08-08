@@ -120,15 +120,31 @@ if [[ ! -r ${ZIM_CONFIG_FILE} ]]; then
 fi
 
 if (( ! __BIC_ZSH_FIRST_LOAD )); then
-  # Keep init.zsh in sync locally. Initial install/bootstrap stays manual.
-  if [[ -r ${ZIM_HOME}/zimfw.zsh && -r ${ZIM_CONFIG_FILE} && ( ! -r ${ZIM_HOME}/init.zsh || ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ) ]]; then
-    source ${ZIM_HOME}/zimfw.zsh init
-  fi
+  # 串行化 Zim 初始化，避免多个 pane 并发写共享 zcompdump/zwc
+  typeset -g __zim_init_lock_fd=-1
+  typeset -g __zim_init_lock_file="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zim-init.lock"
+  {
+    if zmodload zsh/system 2>/dev/null; then
+      command mkdir -p "${__zim_init_lock_file:h}" &&
+        : >>| "${__zim_init_lock_file}" &&
+        zsystem flock -f __zim_init_lock_fd "${__zim_init_lock_file}"
+    fi
 
-  # Initialize Zim modules during the first shell startup only.
-  if [[ -r ${ZIM_HOME}/init.zsh ]]; then
-    source ${ZIM_HOME}/init.zsh
-  fi
+    # Keep init.zsh in sync locally. Initial install/bootstrap stays manual.
+    if [[ -r ${ZIM_HOME}/zimfw.zsh && -r ${ZIM_CONFIG_FILE} && ( ! -r ${ZIM_HOME}/init.zsh || ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ) ]]; then
+      source ${ZIM_HOME}/zimfw.zsh init
+    fi
+
+    # Initialize Zim modules during the first shell startup only.
+    if [[ -r ${ZIM_HOME}/init.zsh ]]; then
+      source ${ZIM_HOME}/init.zsh
+    fi
+  } always {
+    if (( __zim_init_lock_fd >= 0 )); then
+      zsystem flock -u $__zim_init_lock_fd
+    fi
+    unset __zim_init_lock_fd __zim_init_lock_file
+  }
 fi
 # }}} End configuration added by Zim Framework install
 
