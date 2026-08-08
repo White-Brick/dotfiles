@@ -63,10 +63,10 @@ outer.right =      3
 [mode.main.binding]
 
 # Focus
-alt-h = 'focus left --boundaries-action wrap-around-the-workspace'
-alt-j = 'focus down --boundaries-action wrap-around-the-workspace'
-alt-k = 'focus up --boundaries-action wrap-around-the-workspace'
-alt-l = 'focus right --boundaries-action wrap-around-the-workspace'
+alt-left = 'focus left --boundaries-action wrap-around-the-workspace'
+alt-down = 'focus down --boundaries-action wrap-around-the-workspace'
+alt-up = 'focus up --boundaries-action wrap-around-the-workspace'
+alt-right = 'focus right --boundaries-action wrap-around-the-workspace'
 
 # Move window
 alt-shift-h = 'move left'
