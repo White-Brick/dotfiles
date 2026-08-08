@@ -77,6 +77,7 @@ alt-shift-l = 'move right'
 # Layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
+alt-enter = 'fullscreen'
 
 # Resize
 alt-minus = 'resize smart -50'
