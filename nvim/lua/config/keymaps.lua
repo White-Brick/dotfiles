@@ -57,11 +57,20 @@ keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
--- Window navigation with Option key (Meta)
-keymap.set({ "n", "t" }, "<M-h>", "<C-\\><C-n><C-w>h", opts)
-keymap.set({ "n", "t" }, "<M-j>", "<C-\\><C-n><C-w>j", opts)
-keymap.set({ "n", "t" }, "<M-k>", "<C-\\><C-n><C-w>k", opts)
-keymap.set({ "n", "t" }, "<M-l>", "<C-\\><C-n><C-w>l", opts)
+-- Seamless Tmux & Neovim navigation with Option key (Meta)
+local function tmux_navigate(direction)
+  local current_win = vim.api.nvim_get_current_win()
+  vim.cmd("wincmd " .. direction)
+  if current_win == vim.api.nvim_get_current_win() then
+    local tmux_dir_map = { h = "L", j = "D", k = "U", l = "R" }
+    vim.fn.system("tmux select-pane -" .. tmux_dir_map[direction])
+  end
+end
+
+keymap.set({ "n", "t" }, "<M-h>", function() tmux_navigate("h") end, opts)
+keymap.set({ "n", "t" }, "<M-j>", function() tmux_navigate("j") end, opts)
+keymap.set({ "n", "t" }, "<M-k>", function() tmux_navigate("k") end, opts)
+keymap.set({ "n", "t" }, "<M-l>", function() tmux_navigate("l") end, opts)
 
 -- Fast saving
 keymap.set("n", ",w", ":w!<CR>", opts)
