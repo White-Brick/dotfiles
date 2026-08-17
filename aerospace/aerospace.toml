@@ -67,6 +67,10 @@ alt-left = 'focus left --boundaries-action wrap-around-the-workspace'
 alt-down = 'focus down --boundaries-action wrap-around-the-workspace'
 alt-up = 'focus up --boundaries-action wrap-around-the-workspace'
 alt-right = 'focus right --boundaries-action wrap-around-the-workspace'
+f13 = 'focus left --boundaries-action wrap-around-the-workspace'
+f14 = 'focus down --boundaries-action wrap-around-the-workspace'
+f15 = 'focus up --boundaries-action wrap-around-the-workspace'
+f16 = 'focus right --boundaries-action wrap-around-the-workspace'
 
 # Move window
 alt-shift-h = 'move left'
@@ -290,6 +294,11 @@ run = ['layout floating']
 # TickTick
 [[on-window-detected]]
 if.app-id = 'com.TickTick.task.mac'
+run = ['layout floating']
+
+# Notes
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
 run = ['layout floating']
 
 # Calendar

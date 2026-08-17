@@ -9,6 +9,10 @@
 !aerospace/
 !aerospace/aerospace.toml
 
+# Karabiner
+!karabiner/
+!karabiner/karabiner.json
+
 # Kitty
 !kitty/
 !kitty/current-theme.conf
