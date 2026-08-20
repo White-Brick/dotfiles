@@ -331,6 +331,11 @@ run = ['layout floating', 'move-node-to-workspace IM']
 if.app-id = 'io.github.clash-verge-rev.clash-verge-rev'
 run = ['layout floating']
 
+# CC Switch
+[[on-window-detected]]
+if.app-id = 'com.ccswitch.desktop'
+run = ['layout floating']
+
 ####################
 #system floating applications
 ####################
