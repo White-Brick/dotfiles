@@ -336,6 +336,11 @@ run = ['layout floating']
 if.app-id = 'com.ccswitch.desktop'
 run = ['layout floating']
 
+# Ice
+[[on-window-detected]]
+if.app-id = 'com.jordanbaird.Ice'
+run = ['layout floating']
+
 ####################
 #system floating applications
 ####################
