@@ -29,6 +29,14 @@
     }
   },
   "model": "openai/gpt-5.6-sol",
+  "agent": {
+    "build": {
+      "model": "xai/grok-4.6"
+    },
+    "plan": {
+      "model": "xai/grok-4.6"
+    }
+  },
   "provider": {
     "kimi-for-coding": {
       "models": {
