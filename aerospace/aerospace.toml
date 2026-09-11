@@ -205,6 +205,11 @@ run = ['move-node-to-workspace Code']
 if.app-id = 'com.google.antigravity'
 run = ['move-node-to-workspace Code']
 
+# Grok Bot
+[[on-window-detected]]
+if.app-id = 'com.anysphere.sand'
+run = ['move-node-to-workspace Code']
+
 # OpenAI Codex
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
