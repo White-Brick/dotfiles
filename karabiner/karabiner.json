@@ -11,6 +11,18 @@
                         "description": "Mouse Button3 → Control + Up Arrow",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "is_pointing_device": true,
+                                                "product_id": 45114,
+                                                "vendor_id": 1133
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": { "pointing_button": "button3" },
                                 "to": [
                                     {
@@ -181,6 +193,9 @@
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 250
                                 },
                                 "to": [{ "key_code": "left_control" }],
                                 "to_if_alone": [{ "key_code": "f18" }],
@@ -412,7 +427,7 @@
                 },
                 {
                     "from": { "key_code": "f7" },
-                    "to": [{ "key_code": "f5" }]
+                    "to": [{ "key_code": "f7" }]
                 },
                 {
                     "from": { "key_code": "f8" },
