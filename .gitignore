@@ -38,6 +38,10 @@
 !tmux/pane_label.sh
 tmux/plugins/
 
+# Herdr（只同步手感配置，不同步 session/socket/log）
+!herdr/
+!herdr/config.toml
+
 # OpenCode（密钥用 {env:...}，勿提交明文 apiKey）
 !opencode/
 !opencode/.gitignore

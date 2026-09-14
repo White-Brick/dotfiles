@@ -1,0 +1,50 @@
+onboarding = false
+
+[terminal]
+new_cwd = "follow"
+
+[ui]
+prompt_new_tab_name = false
+
+[keys]
+prefix = "ctrl+t"
+
+# Splits: match tmux `|` / `-`. Keep prefix+v as herdr alias.
+split_vertical = ["prefix+|", "prefix+v"]
+split_horizontal = "prefix+minus"
+new_tab = "prefix+c"
+
+# Pane focus: prefix+hjkl plus prefix-free Alt+hjkl (herdr panes only).
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+
+# Resize without entering resize mode.
+resize_pane_left = "prefix+left"
+resize_pane_down = "prefix+down"
+resize_pane_up = "prefix+up"
+resize_pane_right = "prefix+right"
+
+# tmux muscle memory. Displaced herdr defaults are rebound below.
+reload_config = "prefix+r"
+workspace_picker = ["prefix+s", "prefix+w"]
+
+resize_mode = "prefix+shift+r"
+goto = "prefix+space"
+settings = "prefix+comma"
+open_notification_target = "prefix+shift+o"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+o"
+type = "shell"
+command = "bash -lc 'cwd=$(herdr pane current | jq -r .result.pane.cwd); if [ \"$(uname -s)\" = Darwin ]; then open \"$cwd\"; else xdg-open \"$cwd\"; fi'"
+description = "open current pane directory"
