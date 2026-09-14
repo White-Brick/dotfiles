@@ -17,3 +17,12 @@ tmux/plugins/
 htop
 zhihu-kb
 htop
+
+# Herdr runtime (keep herdr/config.toml tracked)
+herdr/*.log
+herdr/*.sock
+herdr/session.json
+herdr/session-history.json
+herdr/.plugins.lock
+herdr/plugins/
+herdr/plugins.json
