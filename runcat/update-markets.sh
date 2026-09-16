@@ -4,10 +4,7 @@
 set -u
 
 outputDirectory="${RUNCAT_OUT_DIR:-$HOME/.runcat}"
-bitcoinAPI="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-goldAPI="https://xaus.com/api/v1/spot"
-goldFetched=0
-goldResponse=""
+marketAPI="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold&vs_currencies=usd"
 
 writeMarketsSnapshot() {
     lastUpdatedDate=$(date -u +%Y-%m-%dT%H:%M:%SZ)
@@ -38,33 +35,8 @@ EOF
     fi
 }
 
-fetchGold() {
-    if [ "$goldFetched" -eq 1 ]; then
-        return 0
-    fi
-    if ! goldResponse=$(curl -fsS --max-time 15 "$goldAPI"); then
-        echo "Failed to fetch market prices from XAUS" >&2
-        return 1
-    fi
-    goldFetched=1
-}
-
-updateBitcoin() {
-    bitcoinPrice=""
-    if bitcoinResponse=$(curl -fsS --max-time 15 "$bitcoinAPI"); then
-        bitcoinPrice=$(printf '%s\n' "$bitcoinResponse" | sed -nE 's/.*"usd"[[:space:]]*:[[:space:]]*([0-9]+(\.[0-9]+)?).*/\1/p')
-    else
-        echo "CoinGecko unavailable; trying the XAUS Bitcoin fallback" >&2
-    fi
-    if [ -z "$bitcoinPrice" ] && fetchGold; then
-        bitcoinPrice=$(printf '%s\n' "$goldResponse" | sed -nE 's/.*"btc_usd"[[:space:]]*:[[:space:]]*([0-9]+(\.[0-9]+)?).*/\1/p')
-    fi
-    if [ -z "$bitcoinPrice" ]; then
-        echo "Failed to extract a Bitcoin price from CoinGecko or XAUS" >&2
-        return 1
-    fi
-
-    bitcoinCurrentValue=$(formatPrice "$bitcoinPrice" 2)
+extractUsd() {
+    printf '%s\n' "$marketResponse" | sed -nE "s/.*\"$1\"[[:space:]]*:[[:space:]]*\\{[^}]*\"usd\"[[:space:]]*:[[:space:]]*([0-9]+(\\.[0-9]+)?).*/\\1/p"
 }
 
 formatPrice() {
@@ -83,39 +55,28 @@ formatPrice() {
     '
 }
 
-updateGold() {
-    if ! fetchGold; then
-        return 1
-    fi
-    goldState=$(printf '%s\n' "$goldResponse" | sed -nE 's/.*"status"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/p')
-    if [ "$goldState" != "fresh" ]; then
-        echo "XAUS gold price is not fresh; keeping the previous snapshot" >&2
-        return 1
-    fi
-    goldPrice=$(printf '%s\n' "$goldResponse" | sed -nE 's/.*"spot_usd_oz"[[:space:]]*:[[:space:]]*([0-9]+(\.[0-9]+)?).*/\1/p')
-    if [ -z "$goldPrice" ]; then
-        echo "Failed to extract the XAU/USD spot price from the XAUS response" >&2
-        return 1
-    fi
+if ! marketResponse=$(curl -fsS --max-time 15 "$marketAPI"); then
+    echo "Failed to fetch market prices from CoinGecko" >&2
+    exit 1
+fi
 
-    goldCurrentValue=$(formatPrice "$goldPrice" 2)
-}
-
+bitcoinPrice=$(extractUsd bitcoin)
+goldPrice=$(extractUsd pax-gold)
 result=0
-bitcoinUpdated=0
-goldUpdated=0
 
-if updateBitcoin; then
-    bitcoinUpdated=1
-else
+if [ -z "$bitcoinPrice" ]; then
+    echo "Failed to extract a Bitcoin price from CoinGecko" >&2
     result=1
-fi
-if updateGold; then
-    goldUpdated=1
 else
-    result=1
+    bitcoinCurrentValue=$(formatPrice "$bitcoinPrice" 2)
 fi
-if [ "$bitcoinUpdated" -eq 1 ] && [ "$goldUpdated" -eq 1 ]; then
+if [ -z "$goldPrice" ]; then
+    echo "Failed to extract a PAXG price from CoinGecko" >&2
+    result=1
+else
+    goldCurrentValue=$(formatPrice "$goldPrice" 2)
+fi
+if [ "$result" -eq 0 ]; then
     writeMarketsSnapshot || result=1
 fi
 exit "$result"

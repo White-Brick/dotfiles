@@ -5,7 +5,7 @@
 - `~/.runcat/codex.json`：由 Codex Stop hook 更新的账号额度。
 - `~/.runcat/markets.json`：在同一张卡片中显示 Bitcoin 和 Gold（XAU）。
 
-本目录的市场更新器基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新组合市场卡片。BTC 与 XAU 均以美元显示，使用千分位并保留两位小数。Bitcoin 优先使用 CoinGecko 的 BTC/USD，接口不可用时使用 XAUS 的 `btc_usd`；Gold 使用 XAUS 的 XAU/USD 现货价。
+本目录的市场更新器基于 [RunCat Neo 官方 Bitcoin 示例](https://github.com/runcat-dev/RunCatNeo/tree/main/docs/samples/bitcoin)，每 10 分钟更新组合市场卡片。BTC 与 XAU 均以美元显示，使用千分位并保留两位小数。两者都走 CoinGecko 一次请求：Bitcoin 用 BTC/USD，Gold 用 Pax Gold（PAXG）近似 XAU 现货。
 
 ## Codex 额度
 
@@ -93,4 +93,4 @@ launchctl print gui/$(id -u)/dev.runcat.market-prices
 launchctl bootout gui/$(id -u)/dev.runcat.market-prices
 ```
 
-只有 Bitcoin 与 Gold 本轮均成功时才原子更新 `markets.json`；任一接口失败或 XAUS 报价不是 `fresh` 时，保留上一次组合快照。
+只有 Bitcoin 与 Gold 本轮均成功时才原子更新 `markets.json`；CoinGecko 失败或缺字段时，保留上一次组合快照。

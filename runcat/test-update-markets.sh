@@ -10,22 +10,15 @@ cat > "$temporaryDirectory/bin/curl" <<'EOF'
 #!/bin/sh
 case "$*" in
     *api.coingecko.com*)
-        if [ "${MARKET_TEST_FAILURE:-}" = "bitcoin" ]; then
-            printf '%s\n' '{}'
-        else
-            printf '%s\n' '{"bitcoin":{"usd":64547}}'
-        fi
-        ;;
-    *xaus.com*)
         case "${MARKET_TEST_FAILURE:-}" in
             bitcoin)
-                printf '%s\n' '{"status":"fresh","spot_usd_oz":4025}'
+                printf '%s\n' '{"pax-gold":{"usd":4025}}'
                 ;;
             gold)
-                printf '%s\n' '{"status":"stale","spot_usd_oz":4025,"btc_usd":64547}'
+                printf '%s\n' '{"bitcoin":{"usd":64547}}'
                 ;;
             *)
-                printf '%s\n' '{"status":"fresh","spot_usd_oz":4025,"btc_usd":64547}'
+                printf '%s\n' '{"bitcoin":{"usd":64547},"pax-gold":{"usd":4025}}'
                 ;;
         esac
         ;;

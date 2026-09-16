@@ -10,6 +10,15 @@
         <string>-c</string>
         <string>exec "$HOME/.config/runcat/update-markets.sh"</string>
     </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>http_proxy</key>
+        <string>http://127.0.0.1:7897</string>
+        <key>https_proxy</key>
+        <string>http://127.0.0.1:7897</string>
+        <key>all_proxy</key>
+        <string>socks5://127.0.0.1:7897</string>
+    </dict>
     <key>StartInterval</key>
     <integer>600</integer>
     <key>RunAtLoad</key>
