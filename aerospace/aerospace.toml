@@ -208,7 +208,7 @@ run = ['move-node-to-workspace Code']
 # Grok Bot
 [[on-window-detected]]
 if.app-id = 'com.anysphere.sand'
-run = ['move-node-to-workspace Code']
+run = ['layout floating', 'move-node-to-workspace IM']
 
 # OpenAI Codex
 [[on-window-detected]]
@@ -344,11 +344,6 @@ run = ['layout floating']
 # CC Switch
 [[on-window-detected]]
 if.app-id = 'com.ccswitch.desktop'
-run = ['layout floating']
-
-# Ice
-[[on-window-detected]]
-if.app-id = 'com.jordanbaird.Ice'
 run = ['layout floating']
 
 ####################
