@@ -192,20 +192,14 @@ export HTTP_PROXY="$http_proxy"
 export HTTPS_PROXY="$https_proxy"
 export ALL_PROXY="$all_proxy"
 
-# Homebrew 中科大镜像源
+# Homebrew: git/API 走中科大；bottle 和 OCI manifest 走官方 ghcr.io
+# 不设 HOMEBREW_BOTTLE_DOMAIN，避免镜像返回过期 200 JSON 导致 checksum 对不上
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
 export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
 export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
-# 镜像与本机不走代理；brew 命令再整体清掉代理，避免瓶子/API 以外的 GitHub 流量进 Clash。
+# 中科大镜像直连；ghcr.io 等仍走 Clash。不要再给 brew 卸代理。
 export NO_PROXY="mirrors.ustc.edu.cn,127.0.0.1,localhost"
 export no_proxy="$NO_PROXY"
-
-brew() {
-  env -u http_proxy -u https_proxy -u all_proxy \
-    -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY \
-    command brew "$@"
-}
 
 # fzf 快捷键绑定 + 补全（completion.zsh 启用 cd **<Tab>，并让 zi 的交互列表正常工作）
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
