@@ -1,10 +1,16 @@
 onboarding = false
 
+[theme]
+name = "gruvbox"
+
 [terminal]
 new_cwd = "follow"
 
 [ui]
 prompt_new_tab_name = false
+
+# tmux colour220 金色活跃边框与高亮
+accent = "#ffd700"
 
 [keys]
 prefix = "ctrl+t"
@@ -25,6 +31,9 @@ resize_pane_left = "prefix+left"
 resize_pane_down = "prefix+down"
 resize_pane_up = "prefix+up"
 resize_pane_right = "prefix+right"
+
+# 对应 tmux bind Tab last-window / last-pane
+last_pane = "prefix+tab"
 
 # tmux muscle memory. Displaced herdr defaults are rebound below.
 reload_config = "prefix+r"
@@ -48,3 +57,11 @@ key = "prefix+o"
 type = "shell"
 command = "bash -lc 'cwd=$(herdr pane current | jq -r .result.pane.cwd); if [ \"$(uname -s)\" = Darwin ]; then open \"$cwd\"; else xdg-open \"$cwd\"; fi'"
 description = "open current pane directory"
+
+[experimental]
+# 在 prefix 激活时临时切换系统输入法为 ASCII 模式，避免中文输入法吞快捷键
+switch_ascii_input_source_in_prefix = true
+
+# 暴露聚焦窗格光标以修复 macOS 输入法中文候选框跟踪定位
+# reveal_hidden_cursor_for_cjk_ime = true
+# cjk_ime_agents = ["claude", "codex", "gemini", "opencode", "pi", "grok"]
