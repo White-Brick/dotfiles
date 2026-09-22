@@ -11,6 +11,8 @@ prompt_new_tab_name = false
 
 # tmux colour220 金色活跃边框与高亮
 accent = "#ffd700"
+# Agent 状态指示器使用具象静态符号
+status_indicators = "symbols"
 
 [keys]
 prefix = "ctrl+t"
