@@ -181,7 +181,6 @@ export EDITOR=nvim
 # Bind Ctrl-o to clear the terminal screen.
 bindkey '^O' clear-screen
 
-(( ! ${+functions[p10k]} )) || p10k finalize
 typeset -gi __BIC_ZSH_INIT_DONE=1
 
 # Clash mixed port. herdr/tmux 新 pane 是 login zsh，从这里继承，不必每次手动 export。
@@ -230,6 +229,9 @@ if [[ -n "$TMUX" ]]; then
   add-zsh-hook chpwd _tmux_update_pane_path
 fi
 
-# zoxide: 智能目录跳转（保留原生 cd，用 z 跳转、zi 交互选择）
-# 必须放在 zshrc 最末尾：在所有 chpwd / prompt hook（p10k、tmux 等）注册之后初始化
+# zoxide: cd 做智能跳转。目录存在时等同 cd，否则按 frecency 匹配。原生 cd 用 builtin cd。
+# 必须在 p10k、tmux 的 chpwd hook 之后初始化。
 eval "$(zoxide init zsh --cmd cd)"
+
+# instant prompt 收尾。须在 source p10k.zsh 和 zoxide 之后，且为 zshrc 最后一行。
+(( ! ${+functions[p10k]} )) || p10k finalize
