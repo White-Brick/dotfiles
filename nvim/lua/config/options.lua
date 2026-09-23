@@ -8,6 +8,9 @@
 -- no number
 -- vim.opt.number = false
 
+-- 英文拼写检查；cjk 不检查中日韩字符，避免 Markdown 中文被标成拼写错误
+vim.opt.spelllang = { "en", "cjk" }
+
 vim.opt.backup = false
 vim.opt.wrap = false
 -- vim.opt.tabstop = 4
