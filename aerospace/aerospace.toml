@@ -210,6 +210,11 @@ run = ['move-node-to-workspace Code']
 if.app-id = 'com.anysphere.sand'
 run = ['layout floating', 'move-node-to-workspace IM']
 
+# Muse
+[[on-window-detected]]
+if.app-id = 'com.meta.endo'
+run = ['layout floating', 'move-node-to-workspace IM']
+
 # OpenAI Codex
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
