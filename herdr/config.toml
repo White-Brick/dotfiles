@@ -14,6 +14,10 @@ accent = "#ffd700"
 # Agent 状态指示器使用具象静态符号
 status_indicators = "symbols"
 
+# tmux 风格：共享分割线、无 pane 间隙、无外框
+pane_gaps = false
+pane_outer_borders = false
+
 [keys]
 prefix = "ctrl+t"
 
