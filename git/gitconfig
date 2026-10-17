@@ -1,0 +1,43 @@
+[include]
+	path = ~/.config/git/gitconfig.local
+
+[core]
+	quotepath = false
+	autocrlf = input
+	excludesfile = ~/.config/git/gitignore_global
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	side-by-side = false
+	syntax-theme = gruvbox-dark
+	plus-style = syntax "#37443d"
+	plus-emph-style = syntax "#46594d"
+	minus-style = syntax "#443538"
+	minus-emph-style = syntax "#5c3d42"
+	line-numbers-plus-style = "#a7c080"
+	line-numbers-minus-style = "#e67e80"
+	line-numbers-zero-style = "#859289"
+	file-style = bold "#dbbc7f"
+	file-decoration-style = "#505a60" ul
+	hunk-header-decoration-style = "#505a60" box
+
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[url "https://"]
+	insteadOf = git://
+[init]
+	defaultBranch = main
+[color]
+	ui = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[pull]
+	rebase = true
+
+
