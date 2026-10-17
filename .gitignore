@@ -65,6 +65,10 @@ tmux/plugins/
 !zim/
 !zim/zimrc
 
+# Lazygit
+!lazygit/
+!lazygit/config.yml
+
 # Git
 !git/
 !git/gitconfig

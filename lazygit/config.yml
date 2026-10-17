@@ -1,0 +1,12 @@
+gui:
+  nerdFontsVersion: "3"
+
+git:
+  diffRenderers:
+    - name: delta
+      type: stdinFilter
+      command: delta --dark --paging=never
+      colorArg: always
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
