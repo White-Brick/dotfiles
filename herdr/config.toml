@@ -45,6 +45,8 @@ swap_pane_left = ["prefix+{", "prefix+shift+["]
 swap_pane_right = ["prefix+}", "prefix+shift+]"]
 
 reload_config = "prefix+r"
+# 脱离会话，对应 tmux prefix+d（默认是 prefix+q）
+detach = "prefix+d"
 workspace_picker = "prefix+w"
 last_pane = "prefix+tab"
 goto = "prefix+s"
