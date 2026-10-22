@@ -256,6 +256,11 @@ run = ['layout floating', 'move-node-to-workspace IM']
 if.app-id = 'com.tdesktop.Telegram'
 run = ['layout floating', 'move-node-to-workspace IM']
 
+# Messages (信息)
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = ['layout floating', 'move-node-to-workspace IM']
+
 # Calibre
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.calibre'
