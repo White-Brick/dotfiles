@@ -190,6 +190,11 @@ run = ['move-node-to-workspace Fd']
 if.app-id = 'com.eltima.cmd1.pro.mas'
 run = ['move-node-to-workspace Fd']
 
+# Zed
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = ['move-node-to-workspace Code']
+
 # VSCode
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
