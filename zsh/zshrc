@@ -178,6 +178,7 @@ path=(
 
 export EDITOR=nvim
 
+bindkey -e
 # Bind Ctrl-o to clear the terminal screen.
 bindkey '^O' clear-screen
 
