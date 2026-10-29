@@ -74,4 +74,10 @@ tmux/plugins/
 !git/gitconfig
 !git/gitignore_global
 
+# Yazi
+!yazi/
+!yazi/yazi.toml
+!yazi/theme.toml
+
+
 

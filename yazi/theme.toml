@@ -1,0 +1,7 @@
+# theme.toml
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+[mode]
+normal_main = { bg = "red", bold = true }
+normal_alt  = { fg = "red", bg = "gray" }
+
