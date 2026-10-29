@@ -4,11 +4,15 @@
 set -u
 
 outputDirectory="${RUNCAT_OUT_DIR:-$HOME/.runcat}"
-marketAPI="https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold&vs_currencies=usd"
+marketAPI="${MARKET_API:-https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold&vs_currencies=usd}"
+outputFile="$outputDirectory/markets.json"
+
+logMsg() {
+    printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*" >&2
+}
 
 writeMarketsSnapshot() {
     lastUpdatedDate=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-    outputFile="$outputDirectory/markets.json"
     metricsBarValue="BTC: $bitcoinCurrentValue · XAU: $goldCurrentValue"
 
     mkdir -p "$outputDirectory" || return 1
@@ -55,28 +59,51 @@ formatPrice() {
     '
 }
 
-if ! marketResponse=$(curl -fsS --max-time 15 "$marketAPI"); then
-    echo "Failed to fetch market prices from CoinGecko" >&2
-    exit 1
+fetchMarketData() {
+    # 优先尝试通过代理请求
+    if response=$(curl -fsS --connect-timeout 5 --max-time 10 --retry 1 "$marketAPI" 2>/dev/null); then
+        printf '%s' "$response"
+        return 0
+    fi
+
+    # 如果走代理失败（例如 Clash 未开启或端口不通），尝试绕过代理直连
+    if response=$(curl -fsS --noproxy "*" --connect-timeout 5 --max-time 10 "$marketAPI" 2>/dev/null); then
+        printf '%s' "$response"
+        return 0
+    fi
+
+    return 1
+}
+
+# 限制日志大小（超过 500KB 保留最后 100 行）
+logFile="$outputDirectory/update-markets.log"
+if [ -f "$logFile" ] && [ "$(wc -c < "$logFile" 2>/dev/null || echo 0)" -gt 512000 ]; then
+    tail -n 100 "$logFile" > "$logFile.tmp" && mv "$logFile.tmp" "$logFile"
+fi
+
+if ! marketResponse=$(fetchMarketData); then
+    logMsg "WARNING: Network or proxy unreachable. Keeping existing cached prices."
+    # 优雅回退：保留现有缓存并正常退出，防止 launchd 报错
+    exit 0
 fi
 
 bitcoinPrice=$(extractUsd bitcoin)
 goldPrice=$(extractUsd pax-gold)
-result=0
 
-if [ -z "$bitcoinPrice" ]; then
-    echo "Failed to extract a Bitcoin price from CoinGecko" >&2
-    result=1
+if [ -z "$bitcoinPrice" ] || [ -z "$goldPrice" ]; then
+    logMsg "WARNING: Could not parse market data from response: $marketResponse"
+    # 遇到接口限流或非预期内容，保留旧缓存并优雅退出
+    exit 0
+fi
+
+bitcoinCurrentValue=$(formatPrice "$bitcoinPrice" 2)
+goldCurrentValue=$(formatPrice "$goldPrice" 2)
+
+if writeMarketsSnapshot; then
+    logMsg "SUCCESS: Updated market prices (BTC: $bitcoinCurrentValue, XAU: $goldCurrentValue)"
 else
-    bitcoinCurrentValue=$(formatPrice "$bitcoinPrice" 2)
+    logMsg "ERROR: Failed to write markets snapshot"
+    exit 1
 fi
-if [ -z "$goldPrice" ]; then
-    echo "Failed to extract a PAXG price from CoinGecko" >&2
-    result=1
-else
-    goldCurrentValue=$(formatPrice "$goldPrice" 2)
-fi
-if [ "$result" -eq 0 ]; then
-    writeMarketsSnapshot || result=1
-fi
-exit "$result"
+
+exit 0

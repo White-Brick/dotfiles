@@ -23,5 +23,9 @@
     <integer>600</integer>
     <key>RunAtLoad</key>
     <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/geewinter/.runcat/update-markets.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/geewinter/.runcat/update-markets.log</string>
 </dict>
 </plist>
