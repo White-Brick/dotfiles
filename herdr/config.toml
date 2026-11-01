@@ -39,13 +39,11 @@ resize_pane_down = "prefix+down"
 resize_pane_up = "prefix+up"
 resize_pane_right = "prefix+right"
 
-
-# Pane swap: 对应 tmux prefix+{ / prefix+}
+# Pane swap
 swap_pane_left = ["prefix+{", "prefix+shift+["]
 swap_pane_right = ["prefix+}", "prefix+shift+]"]
 
 reload_config = "prefix+r"
-# 脱离会话，对应 tmux prefix+d（默认是 prefix+q）
 detach = "prefix+d"
 workspace_picker = "prefix+w"
 last_pane = "prefix+tab"
@@ -58,7 +56,7 @@ key = "prefix+g"
 type = "popup"
 command = "lazygit"
 description = "lazygit"
-width = "80%"
+width = "90%"
 height = "80%"
 
 [[keys.command]]
@@ -72,5 +70,5 @@ description = "open current pane directory"
 switch_ascii_input_source_in_prefix = true
 
 # 暴露聚焦窗格光标以修复 macOS 输入法中文候选框跟踪定位
-# reveal_hidden_cursor_for_cjk_ime = true
-# cjk_ime_agents = ["claude", "codex", "gemini", "opencode", "pi", "grok"]
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex", "gemini", "opencode", "pi", "grok"]

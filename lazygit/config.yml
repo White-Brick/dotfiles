@@ -1,5 +1,6 @@
 gui:
   nerdFontsVersion: "3"
+  wrapLinesInDiffView: false
 
 git:
   diffRenderers:
