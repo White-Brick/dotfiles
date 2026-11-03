@@ -361,6 +361,11 @@ run = ['layout floating']
 if.app-id = 'com.yetone.magpie'
 run = ['layout floating']
 
+# Books
+[[on-window-detected]]
+if.app-id = 'com.apple.iBooksX'
+run = ['layout floating']
+
 ####################
 #system floating applications
 ####################
