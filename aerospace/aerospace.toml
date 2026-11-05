@@ -374,6 +374,11 @@ run = ['layout floating']
 if.app-id = 'com.apple.systempreferences'
 run = ['layout floating']
 
+# Screen Sharing
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenSharing'
+run = ['layout floating']
+
 # System Profiler
 [[on-window-detected]]
 if.app-id = 'com.apple.SystemProfiler'
