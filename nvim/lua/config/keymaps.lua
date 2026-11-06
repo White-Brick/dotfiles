@@ -57,13 +57,20 @@ keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
--- Seamless Tmux & Neovim navigation with Option key (Meta)
+-- Seamless navigation with Option key (Meta).
+-- Tmux wins over Herdr so a tmux session inside Herdr keeps its own panes.
 local function tmux_navigate(direction)
   local current_win = vim.api.nvim_get_current_win()
   vim.cmd("wincmd " .. direction)
-  if current_win == vim.api.nvim_get_current_win() then
+  if current_win ~= vim.api.nvim_get_current_win() then
+    return
+  end
+  if vim.env.TMUX then
     local tmux_dir_map = { h = "L", j = "D", k = "U", l = "R" }
     vim.fn.system("tmux select-pane -" .. tmux_dir_map[direction])
+  elseif vim.env.HERDR_ENV == "1" then
+    local herdr_dir_map = { h = "left", j = "down", k = "up", l = "right" }
+    vim.fn.system({ "herdr", "pane", "focus", "--direction", herdr_dir_map[direction], "--current" })
   end
 end
 

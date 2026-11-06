@@ -27,12 +27,6 @@ split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
 new_tab = "prefix+c"
 
-# Pane focus
-focus_pane_left = "alt+h"
-focus_pane_down = "alt+j"
-focus_pane_up = "alt+k"
-focus_pane_right = "alt+l"
-
 # Resize without entering resize mode.
 resize_pane_left = "prefix+left"
 resize_pane_down = "prefix+down"
@@ -64,6 +58,31 @@ key = "prefix+o"
 type = "shell"
 command = "bash -lc 'cwd=$(herdr pane current | jq -r .result.pane.cwd); if [ \"$(uname -s)\" = Darwin ]; then open \"$cwd\"; else xdg-open \"$cwd\"; fi'"
 description = "open current pane directory"
+
+# Alt+hjkl: vim/nvim/tmux receives the key; any other pane focuses.
+[[keys.command]]
+key = "alt+h"
+type = "shell"
+description = "focus left, or into vim/tmux"
+command = "sh \"$HOME/.config/herdr/navigate.sh\" left alt+h"
+
+[[keys.command]]
+key = "alt+j"
+type = "shell"
+description = "focus down, or into vim/tmux"
+command = "sh \"$HOME/.config/herdr/navigate.sh\" down alt+j"
+
+[[keys.command]]
+key = "alt+k"
+type = "shell"
+description = "focus up, or into vim/tmux"
+command = "sh \"$HOME/.config/herdr/navigate.sh\" up alt+k"
+
+[[keys.command]]
+key = "alt+l"
+type = "shell"
+description = "focus right, or into vim/tmux"
+command = "sh \"$HOME/.config/herdr/navigate.sh\" right alt+l"
 
 [experimental]
 # 在 prefix 激活时临时切换系统输入法为 ASCII 模式，避免中文输入法吞快捷键
